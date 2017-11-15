@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgv1"
+    android:orientation="vertical"
+    android:weightSum="5"
+    tools:context="kmitl.natcha58070069.com.libreria.MainActivity">
+
+    <android.support.v4.widget.Space
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_weight="1"
+        android:id="@+id/imageView"
+        android:layout_width="138dp"
+        android:layout_height="102dp"
+        android:layout_gravity="center"
+        app:srcCompat="@android:color/holo_orange_light"
+        tools:layout_editor_absoluteX="123dp"
+        tools:layout_editor_absoluteY="87dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        app:srcCompat="@android:color/darker_gray" />
+</LinearLayout>
