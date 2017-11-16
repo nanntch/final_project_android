@@ -81,8 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mGoogleMap = googleMap;
 
-        if(mGoogleMap != null){
-
+        if (mGoogleMap != null) {
             mGoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
                 @Override
                 public void onMarkerDragStart(Marker marker) {
@@ -96,8 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 @Override
                 public void onMarkerDragEnd(Marker marker) {
-                    //Update location when drag end
-
+                    //----Update location when drag end----//
                     Geocoder gc = new Geocoder(MainActivity.this);
                     LatLng ll = marker.getPosition();
                     double lat = ll.latitude;
@@ -124,10 +122,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 public View getInfoContents(Marker marker) {
                     View v = getLayoutInflater().inflate(R.layout.info_window, null);
 
-                    TextView tvLocality = (TextView) v.findViewById(R.id.tv_locality);
-                    TextView tvLat = (TextView) v.findViewById(R.id.tv_lat);
-                    TextView tvLng= (TextView) v.findViewById(R.id.tv_lng);
-                    TextView tvSnippet = (TextView) v.findViewById(R.id.tv_snippet);
+                    TextView tvLocality = v.findViewById(R.id.tv_locality);
+                    TextView tvLat = v.findViewById(R.id.tv_lat);
+                    TextView tvLng = v.findViewById(R.id.tv_lng);
+                    TextView tvSnippet = v.findViewById(R.id.tv_snippet);
 
                     LatLng ll = marker.getPosition();
                     tvLocality.setText(marker.getTitle());
@@ -140,28 +138,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             });
         }
 
-
-
-        goToLocationZoom(13.7297949,100.7800607, 15);
+        //----Default location is kmitl----//
+        goToLocationZoom(13.7297949, 100.7800607, 15);
 
 //        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
 //            return;
 //        }
 //        mGoogleMap.setMyLocationEnabled(true);
-//
-//        mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                .addApi(LocationServices.API)
-//                .addConnectionCallbacks(this)
-//                .addOnConnectionFailedListener(this)
-//                .build();
-//        mGoogleApiClient.connect();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(LocationServices.API)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        mGoogleApiClient.connect();
     }
 
     private void goToLocation(double lat, double lng) {
@@ -174,10 +171,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng ll = new LatLng(lat, lng);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
         mGoogleMap.moveCamera(update);
-
-
-
     }
+
     Marker marker;
 
     public void geoLocate(View view) throws IOException {
@@ -199,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void setMarker(String locality, double lat, double lng) {
-        if(marker != null){
+        if (marker != null) {
             marker.remove();
         }
 
@@ -235,7 +230,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             case R.id.mapTypeHybrid:
                 mGoogleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 break;
-
             default:
                 break;
         }
