@@ -4,29 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgv1"
+    android:background="@drawable/bg_cover3"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context="kmitl.natcha58070069.com.libreria.MainActivity">
 
-    <android.support.v4.widget.Space
-        android:layout_weight="1"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lib_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="6"
+        android:padding="5dp" >
 
-    <ImageView
-        android:layout_weight="1"
-        android:id="@+id/imageView"
-        android:layout_width="138dp"
-        android:layout_height="102dp"
-        android:layout_gravity="center"
-        app:srcCompat="@android:color/holo_orange_light"
-        tools:layout_editor_absoluteX="123dp"
-        tools:layout_editor_absoluteY="87dp" />
+    </android.support.v7.widget.RecyclerView>
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_weight="1"
-        app:srcCompat="@android:color/darker_gray" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/addBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="ADD" />
+
+        <Button
+            android:id="@+id/findBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="FIND" />
+
+        <Button
+            android:id="@+id/go"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Go" />
+
+    </LinearLayout>
 </LinearLayout>

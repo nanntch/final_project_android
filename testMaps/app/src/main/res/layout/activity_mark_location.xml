@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="kmitl.natcha58070069.com.libreria.PageShowMap">
+    tools:context="kmitl.natcha58070069.com.testmaps.MarkLocation">
 
 </android.support.constraint.ConstraintLayout>
