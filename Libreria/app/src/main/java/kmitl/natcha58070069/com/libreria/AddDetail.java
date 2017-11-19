@@ -39,7 +39,7 @@ public class AddDetail extends AppCompatActivity implements View.OnClickListener
     };
 
     private void checkEmptyText() {
-        save = findViewById(R.id.saveBtn);
+        save = (Button) findViewById(R.id.saveBtn);
 
         String name = editName.getText().toString();
         String comment = editComment.getText().toString();
@@ -63,17 +63,17 @@ public class AddDetail extends AppCompatActivity implements View.OnClickListener
                 .build();
 
         //Button
-        save = findViewById(R.id.saveBtn);
+        save = (Button) findViewById(R.id.saveBtn);
         save.setOnClickListener(this);
         save.setVisibility(View.GONE);
 
-        delete = findViewById(R.id.deleteBtn);
+        delete = (Button) findViewById(R.id.deleteBtn);
         delete.setOnClickListener(this);
         delete.setVisibility(View.GONE); //hide before click item
 
         //Edit Text
-        editName = findViewById(R.id.editName);
-        editComment = findViewById(R.id.editComment);
+        editName = (EditText) findViewById(R.id.editName);
+        editComment = (EditText) findViewById(R.id.editComment);
 
         //Edit Text Listener
         editName.addTextChangedListener(textWatcher);

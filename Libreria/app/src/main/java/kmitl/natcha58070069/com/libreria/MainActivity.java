@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapterListener, View.OnClickListener, FrontCoverFragment.FrontCoverFragmentListener{
+public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapterListener, View.OnClickListener{
 
     private LibreriaDB libreriaDB;
     private MyAdapter adapter;
@@ -30,15 +30,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         if (savedInstanceState == null){
             Intent intent = new Intent(this, FrontCover.class);
             startActivityForResult(intent, 999);
-
-//            getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .add(R.id.fragmentContainer, new FrontCoverFragment())
-//                    .commit();
         }
-
-        //addOrderFragment
-//        addOrderFragment();
 
         //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO")
@@ -49,27 +41,19 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         adapter.setContext(this);
         adapter.setListener(this);
         //Button
-        go = findViewById(R.id.go);
+        go = (Button) findViewById(R.id.go);
         go.setOnClickListener(this);
-        addLib = findViewById(R.id.addBtn);
+        addLib = (Button) findViewById(R.id.addBtn);
         addLib.setOnClickListener(this);
-        findLocat = findViewById(R.id.findBtn);
+        findLocat = (Button) findViewById(R.id.findBtn);
         findLocat.setOnClickListener(this);
         //set RecyclerView
-        list = findViewById(R.id.lib_list);
+        list = (RecyclerView) findViewById(R.id.lib_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
         //for show list
         loadData();
     }
-
-//    private void addOrderFragment(){
-//        FrontCoverFragment fragment = new FrontCoverFragment();
-//        android.support.v4.app.FragmentManager manager = getSupportFragmentManager();
-//        FragmentTransaction transaction = manager.beginTransaction();
-//        transaction.replace(R.id.layout_fragment_container, fragment);
-//        transaction.commit();
-//    }
 
     private void loadData(){
         //set List of Libreria
@@ -122,10 +106,5 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         if (resultCode == RESULT_OK && requestCode == 999){
             loadData();
         }
-    }
-
-    @Override
-    public void onFmNextPageClick() {
-        getSupportFragmentManager().popBackStack();
     }
 }

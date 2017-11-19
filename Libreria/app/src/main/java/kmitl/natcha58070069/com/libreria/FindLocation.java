@@ -15,7 +15,7 @@ public class FindLocation extends AppCompatActivity {
 
         //map api this page
 
-        Button goToPage = findViewById(R.id.goToBtn);
+        Button goToPage = (Button) findViewById(R.id.goToBtn);
         goToPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
