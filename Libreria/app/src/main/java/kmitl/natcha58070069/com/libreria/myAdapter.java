@@ -1,13 +1,98 @@
 package kmitl.natcha58070069.com.libreria;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
-public class myAdapter extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+
+    public MyAdapter() {
+    }
+
+    private List<LibreriaInfo> data;
+    private Context context;
+    private MyAdapterListener listener;
+
+    public List<LibreriaInfo> getData() {
+        return data;
+    }
+
+    public void setData(List<LibreriaInfo> data) {
+        this.data = data;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public MyAdapterListener getListener() {
+        return listener;
+    }
+
+    public void setListener(MyAdapterListener listener) {
+        this.listener = listener;
+    }
+
+    //Constructor
+    public MyAdapter(Context context) {
+        this.context = context;
+        data = new ArrayList<>();
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_adapter);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+
+        View itemView = inflater.inflate(R.layout.item, null, false);
+        return new ViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        final LibreriaInfo libreriaInfo = data.get(position);
+
+        holder.tvName.setText(libreriaInfo.getName());
+        holder.tvComment.setText(libreriaInfo.getComment());
+
+        //If user want to edit must set on click in holder item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClickInfoItem(libreriaInfo);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        if(data == null){
+            data = new ArrayList<>();
+        }
+        return data.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView tvName;
+        TextView tvComment;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvComment = itemView.findViewById(R.id.tvComment);
+        }
+    }
+
+    public interface MyAdapterListener {
+        void onClickInfoItem(LibreriaInfo libreriaInfo);
     }
 }

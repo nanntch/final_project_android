@@ -21,6 +21,7 @@ public class FindLocation extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FindLocation.this, FrontCover.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

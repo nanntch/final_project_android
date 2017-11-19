@@ -37,7 +37,6 @@
         <activity android:name=".AddDetail" />
         <activity android:name=".FindLocation" />
         <activity android:name=".FrontCover" />
-        <activity android:name=".myAdapter"></activity>
     </application>
 
 </manifest>
