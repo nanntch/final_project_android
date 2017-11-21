@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
                 startActivityForResult(intent2, 999);
                 break;
             case R.id.findBtn:
-                Intent intent4 = new Intent(MainActivity.this, MapsActivity.class);
+                Intent intent4 = new Intent(MainActivity.this, FindLocation.class);
                 startActivityForResult(intent4, 999);
                 break;
         }
