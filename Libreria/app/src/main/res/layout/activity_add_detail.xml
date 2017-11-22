@@ -1,68 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#c7a67d"
-    tools:context="kmitl.natcha58070069.com.libreria.AddDetail">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="75dp"
-        android:layout_height="80dp"
-        android:layout_gravity="right"
-        app:srcCompat="@drawable/bookmark1"
-        tools:layout_editor_absoluteX="338dp"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <TextView
-        android:id="@+id/textName"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="Libreria Name"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bd_add1"
+        tools:context="kmitl.natcha58070069.com.libreria.AddDetail">
 
-    <EditText
-        android:id="@+id/editName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:hint="Candide, Bookmoby,  happening shop"
-        android:inputType="text" />
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:text="Libreria Name"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textComment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="Comment"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:hint="Candide, Bookmoby,  happening shop"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/editComment"
-        android:layout_width="match_parent"
-        android:layout_height="195dp"
-        android:layout_marginLeft="10dp"
-        android:ems="10"
-        android:hint="comment abount this Libreria, mood, value, ect."
-        android:inputType="textPersonName" />
+        <TextView
+            android:id="@+id/textComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Comment"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SAVE" />
+        <EditText
+            android:id="@+id/editComment"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:lines="10"
+            android:minLines="1"
+            android:gravity="top|left"
+            android:maxLines="10"
+            android:scrollbars="vertical"
+            android:hint="comment abount this Libreria, mood, value, ect."
+            android:inputType="textMultiLine" />
 
-    <Button
-        android:id="@+id/deleteBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="DELETE" />
-</LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Location"
+            android:onClick="placeClick"/>
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Get Place" />
+
+        <TextView
+            android:id="@+id/tvLatLng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Get Lat Lng" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SAVE" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DELETE" />
+
+    </LinearLayout>
+
+</ScrollView>
+

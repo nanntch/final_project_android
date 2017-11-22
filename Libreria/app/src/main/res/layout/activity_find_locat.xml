@@ -9,10 +9,11 @@
     tools:context="kmitl.natcha58070069.com.libreria.FindLocation">
 
     <Button
-        android:id="@+id/goToBtn"
+        android:id="@+id/backToMainBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GO TO" />
+        android:onClick="backToMain"
+        android:text="BACK" />
 
     <Button
         android:id="@+id/placePicker"

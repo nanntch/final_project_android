@@ -17,6 +17,7 @@ public class FindLocation extends AppCompatActivity {
 
     private int PLACE_PICKER_REQUEST = 1;
     private TextView tvPlace;
+    private Button backToMainBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +26,8 @@ public class FindLocation extends AppCompatActivity {
 
         //for recieve info from Place Picker and can Click -> itemClick
         tvPlace = (TextView) findViewById(R.id.tvPlace);
-
-        Button goToPage = (Button) findViewById(R.id.goToBtn);
-        goToPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FindLocation.this, FrontCover.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        //for back to Main page
+        backToMainBtn = (Button) findViewById(R.id.backToMainBtn);
     }
 
     //Onclick Button
@@ -75,4 +68,9 @@ public class FindLocation extends AppCompatActivity {
         }
     }
 
+    public void backToMain(View view) {
+        Intent intent = new Intent(FindLocation.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c59cc078c8ba7f7d33ed39ac9df14d68",
+    "identityHash": "8a05e6b082aaf89ba1d55d1a2d858f67",
     "entities": [
       {
         "tableName": "LibreriaInfo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `NAME` TEXT, `COMMENT` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `NAME` TEXT, `COMMENT` TEXT, `LOCATION` TEXT, `LATLNG` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -25,6 +25,18 @@
             "columnName": "COMMENT",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "location",
+            "columnName": "LOCATION",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "latlng",
+            "columnName": "LATLNG",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -39,7 +51,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c59cc078c8ba7f7d33ed39ac9df14d68\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8a05e6b082aaf89ba1d55d1a2d858f67\")"
     ]
   }
 }

@@ -5,6 +5,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ImageView;
 
 /**
  * Created by Nacha on 18-Nov-17.
@@ -22,10 +23,35 @@ class LibreriaInfo implements Parcelable {
     @ColumnInfo(name = "COMMENT")
     private String comment;
 
+    //Location of Lib
+    @ColumnInfo(name = "LOCATION")
+    private String location;
+
+    @ColumnInfo(name = "LATLNG")
+    private String latlng;
+
+    public String getLatlng() {
+        return latlng;
+    }
+
+    public void setLatlng(String latlng) {
+        this.latlng = latlng;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
     protected LibreriaInfo(Parcel in) {
         id = in.readInt();
         name = in.readString();
         comment = in.readString();
+        location = in.readString();
+        latlng = in.readString();
     }
 
     public static final Creator<LibreriaInfo> CREATOR = new Creator<LibreriaInfo>() {
@@ -74,5 +100,7 @@ class LibreriaInfo implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeString(comment);
+        dest.writeString(location);
+        dest.writeString(latlng);
     }
 }
