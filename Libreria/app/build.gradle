@@ -36,6 +36,7 @@ dependencies {
 
     //Facebook
     implementation 'com.facebook.android:facebook-login:[4,5)'
+    implementation 'com.facebook.android:facebook-share:[4,5)'
 
     //Default
     implementation 'com.android.support:appcompat-v7:26.1.+'

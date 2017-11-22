@@ -179,9 +179,13 @@ public class AddDetail extends AppCompatActivity {
             }.execute();
         }
 
+        System.out.println(">>>>>>>>>>>>>>>>>>>" + libreriaInfo.getName());
+
         //Intent
-        Intent intent3 = new Intent();
-        setResult(RESULT_OK, intent3);
+        Intent intent3 = new Intent(this, ShowDetail.class);
+        intent3.putExtra("LibreriaInfo", libreriaInfo);
+        startActivityForResult(intent3, 999);
+//        setResult(RESULT_OK, intent3);
         finish();
     }
 
@@ -193,8 +197,8 @@ public class AddDetail extends AppCompatActivity {
                 return null;
             }
         }.execute();
-        Intent intent6 = new Intent();
-        setResult(RESULT_OK, intent6);
+        Intent intent6 = new Intent(this, MainActivity.class);
+        setResult(RESULT_OK, intent6); //not shure
         finish();
     }
 }

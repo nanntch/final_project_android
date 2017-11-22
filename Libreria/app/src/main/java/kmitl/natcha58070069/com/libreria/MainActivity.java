@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     //When click item (for edit or update)
     @Override
     public void onClickInfoItem(LibreriaInfo libreriaInfo) {
-        Intent intent5 = new Intent(this, AddDetail.class);
+        Intent intent5 = new Intent(this, ShowDetail.class);
         intent5.putExtra("LibreriaInfo", libreriaInfo);
         startActivityForResult(intent5, 999);
     }

@@ -19,8 +19,7 @@
             android:layout_width="fill_parent"
             android:layout_height="58dp"
             android:background="@android:color/transparent"
-            android:minHeight="?attr/actionBarSize"
-            app:titleTextColor="#4c3223">
+            android:minHeight="?attr/actionBarSize">
 
             <TextView
                 android:layout_width="wrap_content"
