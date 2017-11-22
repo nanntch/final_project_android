@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bg_main1"
     android:orientation="vertical"
     android:weightSum="5"
     tools:context="kmitl.natcha58070069.com.libreria.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="58dp"
+        android:background="@android:color/transparent"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="#4c3223" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="LIBRERIA"
+            android:textSize="20sp"/>
+
+    </android.support.v7.widget.Toolbar>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lib_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:padding="5dp" />
 
     <LinearLayout
@@ -21,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
+
 
         <Button
             android:id="@+id/addBtn"
@@ -37,11 +55,11 @@
             android:text="FIND" />
 
         <Button
-            android:id="@+id/go"
+            android:id="@+id/goToProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Go" />
+            android:text="Profile" />
 
     </LinearLayout>
 

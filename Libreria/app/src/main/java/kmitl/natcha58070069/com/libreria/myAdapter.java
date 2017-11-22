@@ -68,14 +68,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.tvName.setText(libreriaInfo.getName());
         holder.tvComment.setText(libreriaInfo.getComment());
 
-//        Uri imgUri = Uri.parse("android.resource://kmitl.natcha58070069.com.libreria/" + R.drawable.bookshelf1);
-//        holder.libItem.setImageURI(imgUri);
-////        try {
-////            holder.libItem.setImageDrawable(Drawable.createFromStream(getContext().openFileInput(String.valueOf(imgUri)), null));
-////        } catch (FileNotFoundException e) {
-////            e.printStackTrace();
-////        }
-
         //If user want to edit must set on click in holder item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

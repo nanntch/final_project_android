@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,18 +21,20 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
-public class AddDetail extends AppCompatActivity implements View.OnClickListener{
+public class AddDetail extends AppCompatActivity {
 
     private LibreriaDB libreriaDB;
     private LibreriaInfo libreriaInfo;
     private String status;
     private EditText editName, editComment;
     private Button save, delete;
-
     private int PLACE_PICKER_REQUEST = 1;
     private TextView tvLocation, tvLatLng;
+    private Toolbar toolbarWidget;
     
-    //if empty text save button is Visibility.Gone
+    /*
+    TextWatcher: if empty text save button is Visibility.Gone
+     */
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -54,14 +57,11 @@ public class AddDetail extends AppCompatActivity implements View.OnClickListener
 
         String name = editName.getText().toString();
         String comment = editComment.getText().toString();
-
-        if (name.equals("") || comment.equals("")){
-//            Toast.makeText(this, "Please enter fully information", Toast.LENGTH_LONG).show();
-        } else {
+        if (!name.equals("") && !comment.equals("")){
             save.setVisibility(View.VISIBLE);
+//            Toast.makeText(this, "Please enter fully information", Toast.LENGTH_LONG).show();
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +73,15 @@ public class AddDetail extends AppCompatActivity implements View.OnClickListener
                 .fallbackToDestructiveMigration()
                 .build();
 
+        //toolbar
+        toolbarWidget = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbarWidget);
+
         //Button
         save = (Button) findViewById(R.id.saveBtn);
-        save.setOnClickListener(this);
-        save.setVisibility(View.GONE);
+        save.setVisibility(View.GONE); //hide before fully info
 
         delete = (Button) findViewById(R.id.deleteBtn);
-        delete.setOnClickListener(this);
         delete.setVisibility(View.GONE); //hide before click item
 
         //Edit Text
@@ -113,36 +115,33 @@ public class AddDetail extends AppCompatActivity implements View.OnClickListener
         checkEmptyText();
     }
 
-    @Override
-    public void onClick(View v) {
-        //save button, delete button
-        switch (v.getId()){
-            case R.id.saveBtn:
-                onSaveBtn();
-                Intent intent3 = new Intent();
-                setResult(RESULT_OK, intent3);
-                finish();
-                break;
-            case R.id.deleteBtn:
-                onDeleteBtn();
-                Intent intent6 = new Intent();
-                setResult(RESULT_OK, intent6);
-                finish();
-                break;
+    public void placeClick(View view) {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        Intent intent;
+        try {
+            intent = builder.build(this);
+            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
         }
     }
 
-    private void onDeleteBtn() {
-        new AsyncTask<Void, Void, LibreriaInfo>() {
-            @Override
-            protected LibreriaInfo doInBackground(Void... voids) {
-                libreriaDB.getLibreriaDAO().delete(libreriaInfo);
-                return null;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST){
+            if (resultCode == RESULT_OK){
+                Place place = PlacePicker.getPlace(this, data);
+                String address = String.format("Place : %s", place.getAddress());
+                tvLocation.setText(address);
+                String latlngAdd = String.format("%s", place.getLatLng());
+                tvLatLng.setText(latlngAdd);
             }
-        }.execute();
+        }
     }
 
-    private void onSaveBtn() {
+    public void onSaveBtn(View view) {
         if (libreriaInfo == null){
             libreriaInfo = new LibreriaInfo();
         }
@@ -151,7 +150,6 @@ public class AddDetail extends AppCompatActivity implements View.OnClickListener
         String comment = editComment.getText().toString();
         String location = tvLocation.getText().toString();
         String latlng = tvLatLng.getText().toString();
-
 
         if (name.equals("") || comment.equals("")){
             Toast.makeText(this, "Please enter fully information", Toast.LENGTH_LONG).show();
@@ -181,31 +179,23 @@ public class AddDetail extends AppCompatActivity implements View.OnClickListener
                 }
             }.execute();
         }
+
+        //Intent
+        Intent intent3 = new Intent();
+        setResult(RESULT_OK, intent3);
+        finish();
     }
 
-    public void placeClick(View view) {
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        Intent intent;
-        try {
-            intent = builder.build(this);
-            startActivityForResult(intent, PLACE_PICKER_REQUEST);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == PLACE_PICKER_REQUEST){
-            if (resultCode == RESULT_OK){
-                Place place = PlacePicker.getPlace(this, data);
-                String address = String.format("Place : %s", place.getAddress());
-                tvLocation.setText(address);
-                String latlngAdd = String.format("%s", place.getLatLng());
-                tvLatLng.setText(latlngAdd);
+    public void onDeleteBtn(View view) {
+        new AsyncTask<Void, Void, LibreriaInfo>() {
+            @Override
+            protected LibreriaInfo doInBackground(Void... voids) {
+                libreriaDB.getLibreriaDAO().delete(libreriaInfo);
+                return null;
             }
-        }
+        }.execute();
+        Intent intent6 = new Intent();
+        setResult(RESULT_OK, intent6);
+        finish();
     }
 }

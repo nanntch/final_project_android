@@ -13,6 +13,21 @@
         android:layout_width="match_parent"
         android:layout_height="70dp" />
 
+    <ImageView
+        android:id="@+id/cov_icon"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        app:srcCompat="@drawable/cov_icon" />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/cov_name"-->
+        <!--android:layout_width="166dp"-->
+        <!--android:layout_height="46dp"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--app:srcCompat="@drawable/cov_name" />-->
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -21,16 +36,16 @@
         android:layout_marginLeft="20dp"
         android:gravity="center"
         android:text="LIBRERIA"
+        android:textStyle="bold"
         android:textSize="30sp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        app:srcCompat="@drawable/library1" />
-
+    <!--<ImageView-->
+        <!--android:id="@+id/cov_slocan"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--app:srcCompat="@drawable/cov_slocan"/>-->
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -57,6 +72,7 @@
         android:gravity="center"
         android:text=""
         android:textStyle="bold" />
+
     <TextView
         android:id="@+id/tv_id"
         android:layout_width="match_parent"
@@ -75,12 +91,12 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp" />
 
-    <Button
-        android:id="@+id/nextPageBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:text="NEXT PAGE" />
+    <!--<Button-->
+        <!--android:id="@+id/nextPageBtn"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_marginLeft="20dp"-->
+        <!--android:text="NEXT PAGE" />-->
 
 </LinearLayout>

@@ -1,7 +1,9 @@
 package kmitl.natcha58070069.com.libreria;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +31,7 @@ public class FrontCover extends AppCompatActivity {
 
     LoginButton loginButton;
     CallbackManager callbackManager;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,14 @@ public class FrontCover extends AppCompatActivity {
                 graphRequest.setParameters(parameters);
                 graphRequest.executeAsync();
 
+                //Shared
+                sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putInt("login", 10);
+                editor.commit();
+
+                System.out.println();
+
                 Intent intent = new Intent(FrontCover.this, MainActivity.class);
                 setResult(999, intent);
                 finish();
@@ -63,7 +74,6 @@ public class FrontCover extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-
             }
 
             @Override
@@ -73,15 +83,15 @@ public class FrontCover extends AppCompatActivity {
         });
 
 
-        Button nextPage = (Button) findViewById(R.id.nextPageBtn);
-        nextPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(FrontCover.this, MainActivity.class);
-                setResult(999, intent);
-                finish();
-            }
-        });
+//        Button nextPage = (Button) findViewById(R.id.nextPageBtn);
+//        nextPage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(FrontCover.this, MainActivity.class);
+//                setResult(999, intent);
+//                finish();
+//            }
+//        });
     }
 
     private void displayUserInfo(JSONObject object) {
