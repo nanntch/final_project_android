@@ -37,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         if user close app but logout, Front page is default page to open: login = -1*/
         SharedPreferences sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         int login = sp.getInt("login", -1);
-        //&& login == -1
         if (savedInstanceState == null && login == -1){
             Intent intent = new Intent(this, FrontCover.class);
             startActivityForResult(intent, 999);
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
                 startActivityForResult(intent2, 999);
                 break;
             case R.id.findBtn:
-                Intent intent4 = new Intent(MainActivity.this, FindLocation.class);
+                Intent intent4 = new Intent(MainActivity.this, MapsActivity.class);
                 startActivityForResult(intent4, 999);
                 break;
         }

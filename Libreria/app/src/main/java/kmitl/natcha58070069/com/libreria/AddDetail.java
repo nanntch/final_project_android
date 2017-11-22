@@ -32,9 +32,8 @@ public class AddDetail extends AppCompatActivity {
     private TextView tvLocation, tvLatLng;
     private Toolbar toolbarWidget;
     
-    /*
-    TextWatcher: if empty text save button is Visibility.Gone
-     */
+
+    //TextWatcher: if empty text save button is Visibility.Gone
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
