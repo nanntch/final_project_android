@@ -19,15 +19,17 @@ public class FindLocation extends AppCompatActivity {
     private TextView tvPlace;
     private Button backToMainBtn;
 
+    //------------------------------------ Un use page -------------------------------------------//
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_locat);
 
         //for recieve info from Place Picker and can Click -> itemClick
-        tvPlace = (TextView) findViewById(R.id.tvPlace);
+        tvPlace = findViewById(R.id.tvPlace);
         //for back to Main page
-        backToMainBtn = (Button) findViewById(R.id.backToMainBtn);
+        backToMainBtn = findViewById(R.id.backToMainBtn);
     }
 
     //Onclick Button

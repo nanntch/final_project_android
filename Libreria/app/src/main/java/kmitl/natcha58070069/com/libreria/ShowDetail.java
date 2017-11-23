@@ -30,21 +30,21 @@ public class ShowDetail extends AppCompatActivity {
                 .build();
 
         //toolbar
-        toolbarWidget = (Toolbar) findViewById(R.id.toolbar);
+        toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
 
         //can clik
-        shareFb = (ImageView) findViewById(R.id.shShare);
-        backTomain = (ImageView) findViewById(R.id.shBackToMain);
-        editDetail = (ImageView) findViewById(R.id.shEdit);
-        back = (TextView) findViewById(R.id.shTextBackToMain);
-        edit = (TextView) findViewById(R.id.shTextEdit);
+        shareFb = findViewById(R.id.shShare);
+        backTomain = findViewById(R.id.shBackToMain);
+        editDetail = findViewById(R.id.shEdit);
+        back = findViewById(R.id.shTextBackToMain);
+        edit = findViewById(R.id.shTextEdit);
 
         //wait for receive value
-        name = (TextView) findViewById(R.id.shTextName);
-        comment = (TextView) findViewById(R.id.shTextComment);
-        locat = (TextView) findViewById(R.id.shTextLocat);
-        latlng = (TextView) findViewById(R.id.shTextLatLng);
+        name = findViewById(R.id.shTextName);
+        comment = findViewById(R.id.shTextComment);
+        locat = findViewById(R.id.shTextLocat);
+        latlng = findViewById(R.id.shTextLatLng);
 
         //getIntent when click item
         libreriaInfo = getIntent().getParcelableExtra("LibreriaInfo");

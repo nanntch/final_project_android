@@ -73,7 +73,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         List<Address> addressList;
 
         Geocoder geocoder = new Geocoder(this);
+
         loadList();
+
 //        addressList = geocoder.getFromLocation()
 
         //mLocationCallback
@@ -106,9 +108,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String listLatLng[] = strLatLng.split(",");
                     String lat = listLatLng[0].substring(1);
                     String lng = listLatLng[1].substring(0,listLatLng[1].length()-1);
-                    System.out.println(l.getName());
-                    System.out.println("lat :" + lat);
-                    System.out.println("lng :" + lng);
+//                    System.out.println(l.getName());
+//                    System.out.println("lat :" + lat);
+//                    System.out.println("lng :" + lng);
                     LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
                     mo.position(latLng);
                     mo.title(l.getName());
@@ -116,8 +118,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }.execute();
-
-
     }
 
 //    private void onNewLocation(Location lastLocation) {
@@ -129,7 +129,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             case REQUEST_LOCATION_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //permission is granted
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(this,
+                            Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         if (client == null) {
                             buildGoogleApiClient();
                         }
@@ -157,7 +158,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }

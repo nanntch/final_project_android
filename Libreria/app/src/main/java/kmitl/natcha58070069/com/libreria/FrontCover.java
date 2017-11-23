@@ -38,7 +38,7 @@ public class FrontCover extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_front_cover);
 
-        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions("email", "public_profile");
 
         callbackManager = CallbackManager.Factory.create();
@@ -109,9 +109,9 @@ public class FrontCover extends AppCompatActivity {
             e.printStackTrace();
         }
         TextView tv_name, tv_email, tv_id;
-        tv_name = (TextView) findViewById(R.id.tv_name);
-        tv_email = (TextView) findViewById(R.id.tv_email);
-        tv_id = (TextView) findViewById(R.id.tv_id);
+        tv_name = findViewById(R.id.tv_name);
+        tv_email = findViewById(R.id.tv_email);
+        tv_id = findViewById(R.id.tv_id);
 
         tv_name.setText(first_name + " " + last_name);
         tv_email.setText("Email : " + email);

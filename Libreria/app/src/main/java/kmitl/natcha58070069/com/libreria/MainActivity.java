@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         }
 
         //toolbar
-        toolbarWidget = (Toolbar) findViewById(R.id.toolbar);
+        toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
 
         //Database
@@ -60,15 +60,15 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         adapter.setListener(this);
 
         //Button
-        goToProfile = (Button) findViewById(R.id.goToProfile);
+        goToProfile = findViewById(R.id.goToProfile);
         goToProfile.setOnClickListener(this);
-        addLib = (Button) findViewById(R.id.addBtn);
+        addLib = findViewById(R.id.addBtn);
         addLib.setOnClickListener(this);
-        findLocat = (Button) findViewById(R.id.findBtn);
+        findLocat = findViewById(R.id.findBtn);
         findLocat.setOnClickListener(this);
 
         //set RecyclerView
-        list = (RecyclerView) findViewById(R.id.lib_list);
+        list = findViewById(R.id.lib_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 

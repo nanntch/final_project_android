@@ -52,7 +52,7 @@ public class AddDetail extends AppCompatActivity {
     };
 
     private void checkEmptyText() {
-        save = (Button) findViewById(R.id.saveBtn);
+        save = findViewById(R.id.saveBtn);
 
         String name = editName.getText().toString();
         String comment = editComment.getText().toString();
@@ -73,27 +73,27 @@ public class AddDetail extends AppCompatActivity {
                 .build();
 
         //toolbar
-        toolbarWidget = (Toolbar) findViewById(R.id.toolbar);
+        toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
 
         //Button
-        save = (Button) findViewById(R.id.saveBtn);
+        save = findViewById(R.id.saveBtn);
         save.setVisibility(View.GONE); //hide before fully info
 
-        delete = (Button) findViewById(R.id.deleteBtn);
+        delete = findViewById(R.id.deleteBtn);
         delete.setVisibility(View.GONE); //hide before click item
 
         //Edit Text
-        editName = (EditText) findViewById(R.id.editName);
-        editComment = (EditText) findViewById(R.id.editComment);
+        editName = findViewById(R.id.editName);
+        editComment = findViewById(R.id.editComment);
 
         //Edit Text Listener
         editName.addTextChangedListener(textWatcher);
         editComment.addTextChangedListener(textWatcher);
 
         //Text View for receive info from Place Picker and can Click -> placeClick
-        tvLocation = (TextView) findViewById(R.id.tvLocation);
-        tvLatLng = (TextView) findViewById(R.id.tvLatLng);
+        tvLocation = findViewById(R.id.tvLocation);
+        tvLatLng = findViewById(R.id.tvLatLng);
 
         //getIntent when click item
         libreriaInfo = getIntent().getParcelableExtra("LibreriaInfo");
