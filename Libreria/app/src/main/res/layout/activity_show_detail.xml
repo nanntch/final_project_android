@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--tools:context="kmitl.natcha58070069.com.libreria.ShowDetail">-->
+<?xml version="1.0" encoding="utf-8"?><!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--tools:contekmitl.natcha58070069.com.libreria.activity.ShowDetailtail">-->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -112,7 +112,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="right"
                 android:onClick="onBackBtn"
-                app:srcCompat="@drawable/sh_back1" />
+                app:srcCompat="@drawable/sh_back2" />
 
             <TextView
                 android:id="@+id/shTextBackToMain"

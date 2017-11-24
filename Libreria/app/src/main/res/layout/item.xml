@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ffffff"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
+    android:background="#ffffff"
     android:weightSum="4">
 
     <ImageView
@@ -14,9 +13,10 @@
         app:srcCompat="@drawable/bookshelf1" />
 
     <LinearLayout
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginRight="5dp"
         android:orientation="vertical"
         android:paddingLeft="5dp">
 
@@ -29,22 +29,13 @@
             android:textColor="#000000"
             android:textStyle="bold" />
 
-        <ScrollView
-            android:id="@+id/scrollView"
+        <TextView
+            android:id="@+id/tvComment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="2dp"
-            android:layout_marginBottom="15dp"
-            android:layout_weight="2">
-
-            <TextView
-                android:id="@+id/tvComment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingRight="10dp"
-                android:textColor="#000000"
-                android:text="It's so relax.."
-                android:scrollbars="vertical"/>
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:paddingRight="10dp"
+            android:scrollbars="vertical"
+            android:text="It's so relax.."
+            android:textColor="#000000" />
     </LinearLayout>
 </LinearLayout>

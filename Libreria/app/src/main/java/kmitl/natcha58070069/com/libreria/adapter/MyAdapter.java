@@ -1,9 +1,6 @@
-package kmitl.natcha58070069.com.libreria;
+package kmitl.natcha58070069.com.libreria.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+
+import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
+import kmitl.natcha58070069.com.libreria.R;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 

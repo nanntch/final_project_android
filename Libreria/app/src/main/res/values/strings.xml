@@ -3,4 +3,5 @@
     <string name="facebook_app_id">1408606685905346</string>
     <string name="fb_login_protocol_scheme">fb1408606685905346</string>
     <string name="title_activity_maps">Map</string>
+    <string name="libreria">LIBRERIA</string>
 </resources>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_cover3"
-    tools:context="kmitl.natcha58070069.com.libreria.FrontCover">
+    tools:context="kmitl.natcha58070069.com.libreria.activity.FrontCover">
 
     <Space
         android:layout_width="match_parent"

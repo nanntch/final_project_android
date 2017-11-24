@@ -1,4 +1,4 @@
-package kmitl.natcha58070069.com.libreria;
+package kmitl.natcha58070069.com.libreria.activity;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
@@ -11,19 +11,28 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.AccessToken;
-import com.facebook.FacebookSdk;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapterListener, View.OnClickListener{
+import kmitl.natcha58070069.com.libreria.R;
+import kmitl.natcha58070069.com.libreria.adapter.MyAdapter;
+import kmitl.natcha58070069.com.libreria.database.LibreriaDB;
+import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
+
+public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapterListener{
 
     private LibreriaDB libreriaDB;
     private MyAdapter adapter;
     private RecyclerView list;
-    private Button goToProfile, addLib, findLocat;
+
+    //Can Click
+    private ImageView maAdd, maFind, maLogout;
+    private TextView add, find, logout;
+
     private int login = 10;
     private Toolbar toolbarWidget;
 
@@ -59,13 +68,12 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         adapter.setContext(this);
         adapter.setListener(this);
 
-        //Button
-        goToProfile = findViewById(R.id.goToProfile);
-        goToProfile.setOnClickListener(this);
-        addLib = findViewById(R.id.addBtn);
-        addLib.setOnClickListener(this);
-        findLocat = findViewById(R.id.findBtn);
-        findLocat.setOnClickListener(this);
+        maAdd = findViewById(R.id.maAdd);
+        maFind = findViewById(R.id.maFind);
+        maLogout = findViewById(R.id.maLogout);
+        add = findViewById(R.id.maTexAdd);
+        find = findViewById(R.id.maTextFind);
+        logout = findViewById(R.id.maTextLogout);
 
         //set RecyclerView
         list = findViewById(R.id.lib_list);
@@ -100,24 +108,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         Intent intent5 = new Intent(this, ShowDetail.class);
         intent5.putExtra("LibreriaInfo", libreriaInfo);
         startActivityForResult(intent5, 999);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.goToProfile:
-                Intent intent = new Intent(MainActivity.this, FrontCover.class);
-                startActivityForResult(intent, 999);
-                break;
-            case R.id.addBtn:
-                Intent intent2 = new Intent(MainActivity.this, AddDetail.class);
-                startActivityForResult(intent2, 999);
-                break;
-            case R.id.findBtn:
-                Intent intent4 = new Intent(MainActivity.this, MapsActivity.class);
-                startActivityForResult(intent4, 999);
-                break;
-        }
+        finish();
     }
 
     //for request code == 999
@@ -127,5 +118,20 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         if (resultCode == RESULT_OK && requestCode == 999){
             loadData();
         }
+    }
+
+    public void onAddBtn(View view) {
+        Intent intent2 = new Intent(MainActivity.this, AddDetail.class);
+        startActivityForResult(intent2, 999);
+    }
+
+    public void onFindBtn(View view) {
+        Intent intent4 = new Intent(MainActivity.this, MapsActivity.class);
+        startActivityForResult(intent4, 999);
+    }
+
+    public void onLogoutBtn(View view) {
+        Intent intent = new Intent(MainActivity.this, FrontCover.class);
+        startActivityForResult(intent, 999);
     }
 }

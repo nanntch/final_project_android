@@ -10,6 +10,7 @@
 
     <!-- uses permission yet -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <permission
         android:name="kmitl.natcha58070069.com.libreria.permission.MAPS_RECEIVE"
@@ -28,7 +29,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,9 +61,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddDetail" />
-        <activity android:name=".FindLocation" />
-        <activity android:name=".FrontCover" />
+        <activity android:name=".activity.AddDetail" />
+        <activity android:name=".activity.FrontCover" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -76,7 +76,7 @@
             android:value="AIzaSyBHOMqzo5bzDtu6L3pWJ8mqk-kRpn-PADs" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".activity.MapsActivity"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -85,7 +85,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Profile" />
-        <activity android:name=".ShowDetail"></activity>
+        <activity android:name=".activity.ShowDetail"></activity>
     </application>
 
 </manifest>

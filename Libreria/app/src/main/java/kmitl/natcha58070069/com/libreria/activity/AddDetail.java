@@ -1,4 +1,4 @@
-package kmitl.natcha58070069.com.libreria;
+package kmitl.natcha58070069.com.libreria.activity;
 
 import android.arch.persistence.room.Room;
 import android.content.Intent;
@@ -9,8 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +19,10 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
+
+import kmitl.natcha58070069.com.libreria.R;
+import kmitl.natcha58070069.com.libreria.database.LibreriaDB;
+import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
 
 public class AddDetail extends AppCompatActivity {
 
@@ -27,7 +30,11 @@ public class AddDetail extends AppCompatActivity {
     private LibreriaInfo libreriaInfo;
     private String status;
     private EditText editName, editComment;
-    private Button save, delete;
+
+    private TextView adTextSave, adTextDelete;
+    private ImageView adSave, adDelete;
+    private LinearLayout adLaySave, adLayDelete;
+
     private int PLACE_PICKER_REQUEST = 1;
     private TextView tvLocation, tvLatLng;
     private Toolbar toolbarWidget;
@@ -52,12 +59,13 @@ public class AddDetail extends AppCompatActivity {
     };
 
     private void checkEmptyText() {
-        save = findViewById(R.id.saveBtn);
 
         String name = editName.getText().toString();
         String comment = editComment.getText().toString();
         if (!name.equals("") && !comment.equals("")){
-            save.setVisibility(View.VISIBLE);
+            adSave.setVisibility(View.VISIBLE);
+            adTextSave.setVisibility(View.VISIBLE);
+            adLaySave.setVisibility(View.VISIBLE);
 //            Toast.makeText(this, "Please enter fully information", Toast.LENGTH_LONG).show();
         }
     }
@@ -76,12 +84,17 @@ public class AddDetail extends AppCompatActivity {
         toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
 
-        //Button
-        save = findViewById(R.id.saveBtn);
-        save.setVisibility(View.GONE); //hide before fully info
+        //TextView
+        adTextSave = findViewById(R.id.adTexSave);
+        adTextDelete = findViewById(R.id.adTextDelete);
 
-        delete = findViewById(R.id.deleteBtn);
-        delete.setVisibility(View.GONE); //hide before click item
+        //Image
+        adSave = findViewById(R.id.adSave);
+        adDelete = findViewById(R.id.adDelete);
+
+        //LinearLayout
+        adLaySave = findViewById(R.id.laySave);
+        adLayDelete = findViewById(R.id.layDelete);
 
         //Edit Text
         editName = findViewById(R.id.editName);
@@ -108,23 +121,13 @@ public class AddDetail extends AppCompatActivity {
             editComment.setText(libreriaInfo.getComment());
             tvLocation.setText(libreriaInfo.getLocation());
             tvLatLng.setText(libreriaInfo.getLatlng());
-            delete.setVisibility(View.VISIBLE); //show when click item
+
+            adDelete.setVisibility(View.VISIBLE); //show when click item
+            adTextDelete.setVisibility(View.VISIBLE);
+            adLayDelete.setVisibility(View.VISIBLE);
         }
         //run once to disable if empty
         checkEmptyText();
-    }
-
-    public void placeClick(View view) {
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-        Intent intent;
-        try {
-            intent = builder.build(this);
-            startActivityForResult(intent, PLACE_PICKER_REQUEST);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -179,7 +182,7 @@ public class AddDetail extends AppCompatActivity {
             }.execute();
         }
 
-        System.out.println(">>>>>>>>>>>>>>>>>>>" + libreriaInfo.getName());
+//        System.out.println(">>>>>>>>>>>>>>>>>>>" + libreriaInfo.getName());
 
         //Intent
         Intent intent3 = new Intent(this, ShowDetail.class);
@@ -200,5 +203,18 @@ public class AddDetail extends AppCompatActivity {
         Intent intent6 = new Intent(this, MainActivity.class);
         setResult(RESULT_OK, intent6); //not shure
         finish();
+    }
+
+    public void onAddLocatBtn(View view) {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        Intent intent;
+        try {
+            intent = builder.build(this);
+            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
     }
 }
