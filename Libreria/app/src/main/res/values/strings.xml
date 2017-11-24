@@ -1,7 +1,14 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name">Libreria</string>
     <string name="facebook_app_id">1408606685905346</string>
     <string name="fb_login_protocol_scheme">fb1408606685905346</string>
     <string name="title_activity_maps">Map</string>
     <string name="libreria">LIBRERIA</string>
+
+    <string-array name="nameMap">
+        <item>Normal</item>
+        <item>Terrain</item>
+        <item>Satellite</item>
+        <item>Hybrid</item>
+    </string-array>
 </resources>

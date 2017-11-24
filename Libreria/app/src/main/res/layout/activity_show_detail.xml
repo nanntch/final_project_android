@@ -13,26 +13,29 @@
         android:layout_width="fill_parent"
         android:layout_height="58dp"
         android:background="@android:color/transparent"
-        android:minHeight="?attr/actionBarSize">
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="#4c3223">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:text="LIBRERIA"
-            android:textSize="20dp" />
+            android:textSize="20sp"/>
         <ImageView
             android:id="@+id/shShare"
             android:layout_width="40dp"
             android:layout_marginRight="5dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
+            android:padding="5dp"
             android:layout_gravity="right"
             android:onClick="onShareBtn"
             app:srcCompat="@drawable/sh_share3" />
     </android.support.v7.widget.Toolbar>
+    
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         android:layout_weight="4">
         <TextView
@@ -86,6 +89,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp" />
+
+        <fragment
+            android:id="@+id/mapFragment"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"/>
+
     </LinearLayout>
 
     <LinearLayout

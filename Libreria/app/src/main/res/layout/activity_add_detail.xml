@@ -1,235 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?><!--<ScrollView android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto">-->
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/bg_main1"
-    android:orientation="vertical"
-    tools:context="kmitl.natcha58070069.com.libreria.activity.AddDetail">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="fill_parent"
-        android:layout_height="58dp"
-        android:background="@android:color/transparent"
-        android:minHeight="?attr/actionBarSize">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/libreria"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            app:srcCompat="@drawable/bookmark1" />
-    </android.support.v7.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/textName"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:text="Libreria Name"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:hint="Candide, Bookmoby,  happening shop"
-        android:inputType="text" />
-
-    <TextView
-        android:id="@+id/textComment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:text="Comment"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editComment"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:ems="10"
-        android:gravity="top|left"
-        android:hint="comment abount this Libreria; mood, value, ect."
-        android:inputType="textMultiLine"
-        android:lines="10"
-        android:maxLines="10"
-        android:minLines="1"
-        android:scrollbars="vertical" />
-
-    <LinearLayout
-        android:id="@+id/layAdLocat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="3dp"
-        android:layout_gravity="right"
-        android:onClick="onAddLocatBtn"
-        android:background="@color/cardview_shadow_start_color"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/maFind"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
-            android:padding="5dp"
-            android:onClick="onAddLocatBtn"
-            app:srcCompat="@drawable/map1" />
-
-        <TextView
-            android:id="@+id/maTextFind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="3dp"
-            android:textSize="16dp"
-            android:onClick="onAddLocatBtn"
-            android:text="Add Location" />
-    </LinearLayout>
-
-    <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="right"-->
-        <!--android:onClick="placeClick"-->
-        <!--android:text="Add Location" />-->
-
-    <TextView
-        android:id="@+id/tvLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:text="Get Place" />
-
-    <TextView
-        android:id="@+id/tvLatLng"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20dp"
-        android:text="Get Lat Lng" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_main1"
+        android:orientation="vertical"
+        tools:context="kmitl.natcha58070069.com.libreria.activity.AddDetail">
 
         <LinearLayout
-            android:id="@+id/laySave"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginRight="2dp"
-            android:layout_marginLeft="1dp"
-            android:onClick="onSaveBtn"
-            android:background="@color/cardview_shadow_start_color"
-            android:gravity="center_horizontal">
+            android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/adSave"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="right"
-                android:onClick="onSaveBtn"
-                app:srcCompat="@drawable/ma_add1" />
+                app:srcCompat="@drawable/bookmark1" />
 
             <TextView
-                android:id="@+id/adTexSave"
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Libreria Name"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:hint="Candide, Bookmoby,  happening shop"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/textComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Comment"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editComment"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:ems="10"
+                android:gravity="top|left"
+                android:hint="comment abount this Libreria; mood, value, ect."
+                android:inputType="textMultiLine"
+                android:lines="10"
+                android:maxLines="10"
+                android:minLines="1"
+                android:scrollbars="vertical" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Place of Libreria"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tvLatLng"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Latitude/Longitude"
+                android:textSize="16dp" />
+
+            <LinearLayout
+                android:id="@+id/layAdLocat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onSaveBtn"
+                android:layout_marginRight="3dp"
                 android:layout_gravity="center"
-                android:textSize="20dp"
-                android:text="SAVE" />
-        </LinearLayout>
+                android:layout_marginBottom="5dp"
+                android:padding="5dp"
+                android:background="@color/cardview_shadow_start_color"
+                android:gravity="center_horizontal"
+                android:onClick="onAddLocatBtn"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/maFind"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:onClick="onAddLocatBtn"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ad_pin" />
+
+                <TextView
+                    android:id="@+id/maTextFind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:onClick="onAddLocatBtn"
+                    android:padding="5dp"
+                    android:text="Add Location"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <LinearLayout
-            android:id="@+id/layDelete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="2dp"
-            android:layout_marginLeft="1dp"
-            android:onClick="onDeleteBtn"
-            android:background="@color/cardview_shadow_start_color"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_gravity="end"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            <ImageView
-                android:id="@+id/adDelete"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="right"
-                android:onClick="onDeleteBtn"
-                app:srcCompat="@drawable/ad_delete" />
-
-            <TextView
-                android:id="@+id/adTextDelete"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/laySave"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="3dp"
-                android:textSize="20dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="1dp"
+                android:layout_weight="1"
+                android:background="@color/cardview_shadow_start_color"
+                android:gravity="center_horizontal"
+                android:onClick="onSaveBtn">
+
+                <ImageView
+                    android:id="@+id/adSave"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    android:onClick="onSaveBtn"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ma_add1" />
+
+                <TextView
+                    android:id="@+id/adTexSave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="onSaveBtn"
+                    android:text="SAVE"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:background="@color/cardview_shadow_start_color"
+                android:gravity="center_horizontal"
                 android:onClick="onDeleteBtn"
-                android:text="DELETE" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/adDelete"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="right"
+                    android:onClick="onDeleteBtn"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ad_delete" />
+
+                <TextView
+                    android:id="@+id/adTextDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="3dp"
+                    android:onClick="onDeleteBtn"
+                    android:text="DELETE"
+                    android:textSize="20dp" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginTop="5dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:weightSum="2">-->
-
-        <!--<Button-->
-            <!--android:id="@+id/saveBtn"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:onClick="onSaveBtn"-->
-            <!--android:text="SAVE" />-->
-
-        <!--<Button-->
-            <!--android:id="@+id/deleteBtn"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:onClick="onDeleteBtn"-->
-            <!--android:text="DELETE" />-->
-    <!--</LinearLayout>-->
-
-
-</LinearLayout>
-
-    </ScrollView>
+</ScrollView>
 

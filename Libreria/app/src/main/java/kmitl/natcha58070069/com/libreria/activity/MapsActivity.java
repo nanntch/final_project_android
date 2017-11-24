@@ -14,6 +14,15 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.ActionBarContextView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationListener;
@@ -38,7 +47,7 @@ import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener, AdapterView.OnItemSelectedListener {
 
     private static final String TAG = MapsActivity.class.getSimpleName();
     private GoogleMap mMap;
@@ -48,6 +57,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
     private LibreriaDB libreriaDB;
+
+    private Toolbar toolbarWidget;
+
 
 
     @Override
@@ -59,7 +71,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             checkLocationPermission();
         }
 
+        //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO").build();
+
+        //toolbar
+        toolbarWidget = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbarWidget);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -70,6 +87,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Geocoder geocoder = new Geocoder(this);
 
+        //Spinner
+        Spinner mapSpinner = findViewById(R.id.mapSpinner);
+
+        ArrayAdapter<String> mapAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.nameMap));
+        mapAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mapSpinner.setAdapter(mapAdapter);
+
+        mapSpinner.setOnItemSelectedListener(this);
+
+        //load
         loadList();
 
 //        addressList = geocoder.getFromLocation()
@@ -84,6 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        };
 
     }
+
 
     private void loadList() {
         new AsyncTask<Void, Void, List<LibreriaInfo>>() {
@@ -244,4 +273,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String select = parent.getItemAtPosition(position).toString();
+        if (select.equals("Normal")){
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        } else if (select.equals("Terrain")){
+            mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        } else if (select.equals("Satellite")){
+            mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+        } else if (select.equals("Hybrid")) {
+            mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    //    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 }
