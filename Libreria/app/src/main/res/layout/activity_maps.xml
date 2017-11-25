@@ -16,9 +16,9 @@
         app:titleTextColor="#ffffffff">
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:padding="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="5dp"
             android:onClick="onBackToMainFromMap"
             android:src="@drawable/map_back" />
 

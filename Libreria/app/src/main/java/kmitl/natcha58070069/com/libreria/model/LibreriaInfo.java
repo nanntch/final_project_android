@@ -6,9 +6,6 @@ import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by Nacha on 18-Nov-17.
- */
 @Entity
 public class LibreriaInfo implements Parcelable {
 

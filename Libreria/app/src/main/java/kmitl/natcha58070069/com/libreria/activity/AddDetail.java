@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-//import android.text.Editable;
-//import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,14 +27,17 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
 
     private LibreriaDB libreriaDB;
     private LibreriaInfo libreriaInfo;
+
     /*status -> Can intent to next page?
     add: when click add, dont have info in Room Database
     update: when click item, have info in Room DB if user edit sth must update to DB*/
     private String status;
+
     /* stay -> for check error
     stay = 1: have error of input ex: comment too long, Can't intent to next page
     stay = 2: don't have input error */
     private int stay;
+
     private EditText editName, editComment;
     private TextView adTextSave, adTextDelete, tvLocation, tvLatLng;
     private ImageView adSave, adDelete, adBack;
@@ -52,27 +53,31 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO")
                 .fallbackToDestructiveMigration()
                 .build();
+
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
-        //TextView can click
+
+        //TextView && ImageView && LinearLayput can click
         adTextSave = findViewById(R.id.adTexSave);
         adTextDelete = findViewById(R.id.adTextDelete);
-        //Image can click
         adSave = findViewById(R.id.adSave);
         adDelete = findViewById(R.id.adDelete);
         adBack = findViewById(R.id.adBack);
-        //LinearLayout can click
         adLaySave = findViewById(R.id.laySave);
         adLayDelete = findViewById(R.id.layDelete);
+
         //Edit Text
         editName = findViewById(R.id.editName);
         editComment = findViewById(R.id.editComment);
+
         //Text View for receive info from Place Picker
         tvLocation = findViewById(R.id.tvLocation);
         tvLatLng = findViewById(R.id.tvLatLng);
-        //getIntent when click item
+
+        //getIntent for receive info when click item
         libreriaInfo = getIntent().getParcelableExtra("LibreriaInfo");
+
         //create info or update info
         if(libreriaInfo == null){
             libreriaInfo = new LibreriaInfo();
@@ -99,6 +104,10 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
         countTextView.setCharCountChangedListener(this);
     }
 
+    /*onActivityReault
+    * get data of selected place and show with Text view
+    * - address
+    * - latitude & longitude*/
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST){
@@ -112,6 +121,16 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
         }
     }
 
+    /*Button Save in Add detail Activity ->
+    * When user click save btn
+    * - receive name, comment, location, lat/lng from user
+    * - check empty: If empty editText must warnning and stay this page untill editText not empty
+    * - ckeck length: If length of name more than 50 characters must warning
+    *                   If length of comment more than 280 char must warning
+    * - ckeck add location: If user dont add location must warning and stay this page
+    * And then, If information is not available in the database must insert to libreriaDB (Room DB)
+    * else update to libreriaDB
+    * if success must go to Show Detail (next page) */
     public void onSaveBtn(View view) {
         if (libreriaInfo == null){
             libreriaInfo = new LibreriaInfo();
@@ -120,23 +139,18 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
         String comment = editComment.getText().toString();
         String location = tvLocation.getText().toString();
         String latlng = tvLatLng.getText().toString();
-
         try{
             if (name.equals("") || comment.equals("")){
                 Toast.makeText(this, "Please enter fully information", Toast.LENGTH_LONG).show();
                 stay = 1;
-                System.out.println(">>>>>>>>>>>>>>>>>>>>> 1");
             } else if (comment.length() > 280){
                 Toast.makeText(this, "Comment up to 280 characters, Please try again", Toast.LENGTH_LONG).show();
                 stay = 1;
-                System.out.println(">>>>>>>>>>>>>>>>>>>>> 2");
-            } else if (name.length() > 30){
-                Toast.makeText(this, "Name up to 30 characters, Please try again", Toast.LENGTH_LONG).show();
+            } else if (name.length() > 50){
+                Toast.makeText(this, "Name up to 50 characters, Please try again", Toast.LENGTH_LONG).show();
                 stay = 1;
-                System.out.println(">>>>>>>>>>>>>>>>>>>>> 3");
             } else if (location.equals("Place of Libreria") || latlng.equals("Latitude/Longitude")){
                 Toast.makeText(this, "Please add location of Libreria", Toast.LENGTH_LONG).show();
-                System.out.println(">>>>>>>>>>>>>>>>>>>>> 4");
                 stay = 1;
             }
             else {
@@ -184,10 +198,12 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
             }
         }.execute();
         Intent intent6 = new Intent(this, MainActivity.class);
-        setResult(RESULT_OK, intent6); //not shure
+        setResult(RESULT_OK, intent6);
         finish();
     }
 
+    /*Add Location Button ->
+    * Open Place picker (map) for select location of libreria*/
     public void onAddLocatBtn(View view) {
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
         Intent intent;

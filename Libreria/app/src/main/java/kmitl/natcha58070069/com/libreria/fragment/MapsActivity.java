@@ -4,8 +4,8 @@ import android.Manifest;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
+//import android.location.Address;
+//import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -67,32 +67,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO").build();
+
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        List<Address> addressList;
-
-        Geocoder geocoder = new Geocoder(this);
-
         //Spinner
         Spinner mapSpinner = findViewById(R.id.mapSpinner);
-
+        //Adapter of map type
         ArrayAdapter<String> mapAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,
                 getResources().getStringArray(R.array.nameMap));
         mapAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mapSpinner.setAdapter(mapAdapter);
-
         mapSpinner.setOnItemSelectedListener(this);
 
         //load
         loadList();
     }
 
-
+    /*Load data from DB and get lat/lng for mark libreria in list
+    * Because value of Place Picker getlatlng is String format "(xxx,xxx)"
+    * So that split, substring and parseDouble for lat/lng value*/
     private void loadList() {
         new AsyncTask<Void, Void, List<LibreriaInfo>>() {
             @Override
@@ -103,10 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             @Override
             protected void onPostExecute(List<LibreriaInfo> libreriaInfos) {
-                System.out.println("size: " + libreriaInfos.size());
-
                 MarkerOptions mo = new MarkerOptions();
-
                 for (LibreriaInfo l : libreriaInfos){
                     String strLatLng = l.getLatlng().substring(9);
                     String listLatLng[] = strLatLng.split(",");
@@ -157,7 +153,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             buildGoogleApiClient();
@@ -165,6 +160,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    //Build Google Api Client
     protected synchronized void buildGoogleApiClient() {
         client = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -174,10 +170,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         client.connect();
     }
 
+    //
     @Override
     public void onLocationChanged(Location location) {
         lastLocation = location;
-
         if (currentLocationMarker != null) {
             currentLocationMarker.remove();
         }
@@ -198,11 +194,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //            removeLocationUpdate();
         }
     }
-
-//    public void removeLocationUpdate(){
-//        Log.i(TAG, "Removing location updates");
-//        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
-//    }
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
@@ -240,6 +231,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    /*Dropdown type of map -> Normal, Terrain, Satellite, Hybrid
+    * When click map is change type*/
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String select = parent.getItemAtPosition(position).toString();

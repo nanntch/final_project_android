@@ -5,12 +5,9 @@ import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-//import android.location.Location;
 import android.net.Uri;
-//import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
-//import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,24 +17,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-//import com.google.android.gms.common.api.GoogleApiClient;
-//import com.google.android.gms.location.LocationRequest;
-//import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMapOptions;
+//import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
-//import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.ByteArrayOutputStream;
@@ -50,18 +42,22 @@ import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
 public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback {
 
     private ImageView shareFb, backTomain, editDetail;
-    private TextView name, comment, locat, latlng, share, edit; //receive value
+    private TextView name, comment, locat, share, edit; //receive value
     private LinearLayout layShare, layEdit;
     //DB
     private LibreriaDB libreriaDB;
     private LibreriaInfo libreriaInfo;
+
     //Toolbar
     private Toolbar toolbarWidget;
+
     //lat, lng String for receive substring
     private String lat, lng;
     private double latitude, longitude;
+
     //for share facebook
     final private int REQUEST_CODE_EXTERNAL_STORAGE = 1;
+
     //Map
     private GoogleMap mGoogleMap;
     public static final int REQUEST_LOCATION_CODE = 99;
@@ -75,9 +71,11 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO")
                 .fallbackToDestructiveMigration()
                 .build();
+
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
+
         //can clik
         backTomain = findViewById(R.id.shBackToMain);
         shareFb = findViewById(R.id.shShare);
@@ -91,11 +89,14 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         name = findViewById(R.id.shTextName);
         comment = findViewById(R.id.shTextComment);
         locat = findViewById(R.id.shTextLocat);
-        latlng = findViewById(R.id.shTextLatLng);
+//        latlng = findViewById(R.id.shTextLatLng);
+
         //getIntent when click item
         libreriaInfo = getIntent().getParcelableExtra("LibreriaInfo");
+
         //get data from model
         getData();
+
         //Map
         initMap();
     }
@@ -105,11 +106,12 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         mapFragment.getMapAsync(this);
     }
 
+    /*get data from libreriaInfo for set to TextView and Set latitude & longitude*/
     private void getData() {
         name.setText(libreriaInfo.getName());
         comment.setText(libreriaInfo.getComment());
         locat.setText(libreriaInfo.getLocation());
-        latlng.setText(libreriaInfo.getLatlng());
+//        latlng.setText(libreriaInfo.getLatlng());
         //set latlng for mark location
         String strLatLng = libreriaInfo.getLatlng().substring(9);
         String listLatLng[] = strLatLng.split(",");
@@ -141,6 +143,8 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         return true;
     }
 
+    /*When click share button
+    * just show information of libreria and capture for share*/
     public void onShareBtn(View view) {
         if (askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, REQUEST_CODE_EXTERNAL_STORAGE)) {
             shareFb.setVisibility(View.GONE);
@@ -150,20 +154,20 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
             layShare.setVisibility(View.GONE);
             layEdit.setVisibility(View.GONE);
             backTomain.setVisibility(View.GONE);
-
-            //Capture
-//            GoogleMapOptions options = new GoogleMapOptions().liteMode(true);
+            //Screen shot
             Bitmap bm = ScreenCapture.takeScreenShotOfRootView(view.getRootView());
             Uri uri = getImageUri(this, bm);
             useShare(uri);
         }
     }
 
+    /*for share with EXTRA STREAM other application on user device*/
     private void useShare(Uri uri) {
         final Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/jpg");
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         startActivity(Intent.createChooser(shareIntent, "Share Libreria via"));
+
         shareFb.setVisibility(View.VISIBLE);
         editDetail.setVisibility(View.VISIBLE);
         share.setVisibility(View.VISIBLE);
@@ -216,12 +220,14 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         mGoogleMap = googleMap;
         goToLocationZoom(latitude, longitude, 15);
 
+        //Mark location of selected
         MarkerOptions mo = new MarkerOptions();
         LatLng latLng = new LatLng(latitude, longitude);
         mo.position(latLng);
         mo.title(libreriaInfo.getName());
         mGoogleMap.addMarker(mo);
 
+        //screen shot map and set Image is Bitmap
         final ImageView mapPreview = findViewById(R.id.preViewMap);
         mapPreview.setImageBitmap(null);
         mapPreview.setLayoutParams(new LinearLayout.LayoutParams(0,0));

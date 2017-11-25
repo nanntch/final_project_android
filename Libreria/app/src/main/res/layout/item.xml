@@ -11,12 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:background="#ffffffff"
+        android:background="@android:color/transparent"
         android:weightSum="4">
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="2dp"
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:srcCompat="@drawable/bookshelf1" />
@@ -39,17 +39,18 @@
                 android:paddingTop="5dp"
                 android:layout_marginRight="60dp"
                 android:text="LibreriaName"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
+                android:textSize="14dp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvComment"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginRight="60dp"
                 android:scrollbars="vertical"
                 android:text="It's so relax.."
-                android:textColor="#000000" />
+                android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

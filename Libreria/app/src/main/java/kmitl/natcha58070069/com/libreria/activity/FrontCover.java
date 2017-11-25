@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-//import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -15,7 +14,6 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-//import org.json.JSONException;
 import org.json.JSONObject;
 
 import kmitl.natcha58070069.com.libreria.R;
@@ -24,7 +22,6 @@ public class FrontCover extends AppCompatActivity {
 
     LoginButton loginButton;
     CallbackManager callbackManager;
-    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +37,19 @@ public class FrontCover extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 String userid = loginResult.getAccessToken().getUserId();
 
-                GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-//                        displayUserInfo(object);
-                    }
-                });
+//                GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+//                    @Override
+//                    public void onCompleted(JSONObject object, GraphResponse response) {
+////                        displayUserInfo(object);
+//                    }
+//                });
 
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "first_name, last_name, email, id");
-                graphRequest.setParameters(parameters);
-                graphRequest.executeAsync();
+                //for get information for Facebook (But in case I dont use this)
+//                Bundle parameters = new Bundle();
+//                parameters.putString("fields", "first_name, last_name, email, id");
+//                graphRequest.setParameters(parameters);
+//                graphRequest.executeAsync();
 
-                //Shared Preferences
-                sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sp.edit();
-                editor.putInt("login", 10);
-                editor.commit();
 
                 //Intent to next page when Success to login FB
                 Intent intent = new Intent(FrontCover.this, MainActivity.class);

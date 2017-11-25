@@ -11,7 +11,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="58dp"
         android:background="@android:color/transparent"
         android:minHeight="?attr/actionBarSize"
@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginRight="20dp"
             android:text="LIBRERIA"
             android:textSize="20sp"/>
 
@@ -45,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginRight="2dp"
+            android:layout_marginRight="1dp"
             android:layout_marginLeft="1dp"
             android:onClick="onAddBtn"
             android:background="@color/cardview_shadow_start_color"
@@ -53,6 +54,7 @@
 
             <ImageView
                 android:id="@+id/maAdd"
+                android:padding="5dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="right"
@@ -65,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="onAddBtn"
                 android:layout_gravity="center"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:text="ADD" />
         </LinearLayout>
 
@@ -83,11 +85,12 @@
 
             <ImageView
                 android:id="@+id/maFind"
+                android:padding="5dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="right"
                 android:onClick="onFindBtn"
-                app:srcCompat="@drawable/map1" />
+                app:srcCompat="@drawable/near" />
 
             <TextView
                 android:id="@+id/maTextFind"
@@ -95,9 +98,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="3dp"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:onClick="onFindBtn"
-                android:text="FIND" />
+                android:text="FIND Nearby" />
         </LinearLayout>
 
         <LinearLayout
@@ -114,6 +117,7 @@
 
             <ImageView
                 android:id="@+id/maLogout"
+                android:padding="5dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="right"
@@ -125,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="20dp"
+                android:textSize="16dp"
                 android:onClick="onLogoutBtn"
                 android:text="LOG OUT" />
         </LinearLayout>

@@ -1,9 +1,9 @@
 package kmitl.natcha58070069.com.libreria.activity;
 
 import android.arch.persistence.room.Room;
-import android.content.Context;
+//import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+//import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     private ImageView maAdd, maFind, maLogout;
     private TextView add, find, logout;
 
-    private int login = 10;
     private Toolbar toolbarWidget;
 
     @Override
@@ -43,28 +42,26 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         setContentView(R.layout.activity_main);
 
         /*Shared Preferences;
-        if user close app but login, Main page (Main Activity) is default page to open: login = 10
-        if user close app but logout, Front page is default page to open: login = -1*/
-        SharedPreferences sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
-        int login = sp.getInt("login", -1);
-        if (savedInstanceState == null && login == -1){
-            Intent intent = new Intent(this, FrontCover.class);
-            startActivityForResult(intent, 999);
-        } else if (AccessToken.getCurrentAccessToken() == null){
+        if user close app but login, Main page (Main Activity) is default page to open
+        if user close app but logout, Front page is default page to open*/
+        if (AccessToken.getCurrentAccessToken() == null){
             Intent intent = new Intent(this, FrontCover.class);
             startActivityForResult(intent, 999);
         }
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
+
         //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO")
                 .fallbackToDestructiveMigration()
                 .build();
+
         //set Adapter
         adapter = new MyAdapter(this);
         adapter.setContext(this);
         adapter.setListener(this);
+
         //ImageView && TextView can click
         maAdd = findViewById(R.id.maAdd);
         maFind = findViewById(R.id.maFind);
@@ -72,14 +69,19 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         add = findViewById(R.id.maTexAdd);
         find = findViewById(R.id.maTextFind);
         logout = findViewById(R.id.maTextLogout);
+
         //set RecyclerView
         list = findViewById(R.id.lib_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
+
         //for show list(Recycler)
         loadData();
     }
 
+    /*Load data ->
+    get information in Database and put it to adapter for show in Recycler
+    findAll -> every id in Database*/
     private void loadData(){
         //set List of Libreria
         new AsyncTask<Void, Void, List<LibreriaInfo>>() {
@@ -104,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         Intent intent5 = new Intent(this, ShowDetail.class);
         intent5.putExtra("LibreriaInfo", libreriaInfo);
         startActivityForResult(intent5, 999);
-        finish();
     }
 
     //for request code == 999
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         }
     }
 
+    //Method of Button (Add, Find, Logout)
     public void onAddBtn(View view) {
         Intent intent2 = new Intent(MainActivity.this, AddDetail.class);
         startActivityForResult(intent2, 999);
