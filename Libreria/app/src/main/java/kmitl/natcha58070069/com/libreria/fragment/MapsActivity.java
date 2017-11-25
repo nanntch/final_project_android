@@ -1,7 +1,8 @@
-package kmitl.natcha58070069.com.libreria.activity;
+package kmitl.natcha58070069.com.libreria.fragment;
 
 import android.Manifest;
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -14,11 +15,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.ActionBarContextView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,8 +57,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private Toolbar toolbarWidget;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,14 +65,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             checkLocationPermission();
         }
-
         //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO").build();
-
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbarWidget);
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -99,18 +90,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //load
         loadList();
-
-//        addressList = geocoder.getFromLocation()
-
-        //mLocationCallback
-//        mLocationCallback = new LocationCallback(){
-//            @Override
-//            public void onLocationResult(LocationResult locationResult) {
-//                super.onLocationResult(locationResult);
-//                onNewLocation(locationResult.getLastLocation());
-//            }
-//        };
-
     }
 
 
@@ -133,20 +112,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String listLatLng[] = strLatLng.split(",");
                     String lat = listLatLng[0].substring(1);
                     String lng = listLatLng[1].substring(0,listLatLng[1].length()-1);
-//                    System.out.println(l.getName());
-//                    System.out.println("lat :" + lat);
-//                    System.out.println("lng :" + lng);
+                    //set new LatLng
                     LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
                     mo.position(latLng);
                     mo.title(l.getName());
+                    mo.snippet(l.getLocation());
                     mMap.addMarker(mo);
                 }
             }
         }.execute();
     }
-
-//    private void onNewLocation(Location lastLocation) {
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -188,12 +163,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
         }
-
-        //        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -202,7 +171,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-
         client.connect();
     }
 
@@ -213,9 +181,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (currentLocationMarker != null) {
             currentLocationMarker.remove();
         }
-
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Current Location");
@@ -293,10 +259,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    public void onBackToMainFromMap(View view) {
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 
-    //    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
 }

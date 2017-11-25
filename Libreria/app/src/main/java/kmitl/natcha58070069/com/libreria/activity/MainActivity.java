@@ -21,6 +21,7 @@ import java.util.List;
 import kmitl.natcha58070069.com.libreria.R;
 import kmitl.natcha58070069.com.libreria.adapter.MyAdapter;
 import kmitl.natcha58070069.com.libreria.database.LibreriaDB;
+import kmitl.natcha58070069.com.libreria.fragment.MapsActivity;
 import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
 
 public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapterListener{
@@ -53,34 +54,29 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
             Intent intent = new Intent(this, FrontCover.class);
             startActivityForResult(intent, 999);
         }
-
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
-
         //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO")
                 .fallbackToDestructiveMigration()
                 .build();
-
         //set Adapter
         adapter = new MyAdapter(this);
         adapter.setContext(this);
         adapter.setListener(this);
-
+        //ImageView && TextView can click
         maAdd = findViewById(R.id.maAdd);
         maFind = findViewById(R.id.maFind);
         maLogout = findViewById(R.id.maLogout);
         add = findViewById(R.id.maTexAdd);
         find = findViewById(R.id.maTextFind);
         logout = findViewById(R.id.maTextLogout);
-
         //set RecyclerView
         list = findViewById(R.id.lib_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
-
-        //for show list
+        //for show list(Recycler)
         loadData();
     }
 

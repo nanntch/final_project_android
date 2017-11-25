@@ -61,6 +61,9 @@ dependencies {
 
     //May be Recycler & Card View
     implementation 'com.android.support:design:26.1.+'
+
+    //Add Library
+    implementation 'com.github.xbroak:CharCountTextView:v1.0'
 }
 
 configurations.all {

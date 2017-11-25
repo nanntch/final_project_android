@@ -65,7 +65,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         final LibreriaInfo libreriaInfo = data.get(position);
 
         holder.tvName.setText(libreriaInfo.getName());
-        holder.tvComment.setText(libreriaInfo.getComment());
+
+        int len = libreriaInfo.getComment().length();
+        if (len > 80){
+            String commentCutted = libreriaInfo.getComment().substring(0,81);
+            holder.tvComment.setText(commentCutted + "..");
+        }else {
+            holder.tvComment.setText(libreriaInfo.getComment());
+        }
 
         //If user want to edit must set on click in holder item
         holder.itemView.setOnClickListener(new View.OnClickListener() {

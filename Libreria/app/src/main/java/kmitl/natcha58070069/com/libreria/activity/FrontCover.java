@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+//import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -15,11 +15,10 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import org.json.JSONException;
+//import org.json.JSONException;
 import org.json.JSONObject;
 
 import kmitl.natcha58070069.com.libreria.R;
-
 
 public class FrontCover extends AppCompatActivity {
 
@@ -44,7 +43,7 @@ public class FrontCover extends AppCompatActivity {
                 GraphRequest graphRequest = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
-                        displayUserInfo(object);
+//                        displayUserInfo(object);
                     }
                 });
 
@@ -53,14 +52,13 @@ public class FrontCover extends AppCompatActivity {
                 graphRequest.setParameters(parameters);
                 graphRequest.executeAsync();
 
-                //Shared
+                //Shared Preferences
                 sp = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putInt("login", 10);
                 editor.commit();
 
-                System.out.println();
-
+                //Intent to next page when Success to login FB
                 Intent intent = new Intent(FrontCover.this, MainActivity.class);
                 setResult(999, intent);
                 finish();
@@ -75,41 +73,6 @@ public class FrontCover extends AppCompatActivity {
 
             }
         });
-
-
-//        Button nextPage = (Button) findViewById(R.id.nextPageBtn);
-//        nextPage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(FrontCover.this, MainActivity.class);
-//                setResult(999, intent);
-//                finish();
-//            }
-//        });
-    }
-
-    private void displayUserInfo(JSONObject object) {
-        String first_name = "";
-        String last_name = "";
-        String email = "";
-        String id = "";
-
-        try {
-            first_name = object.getString("first_name");
-            last_name = object.getString("last_name");
-            email = object.getString("email");
-            id = object.getString("id");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        TextView tv_name, tv_email, tv_id;
-        tv_name = findViewById(R.id.tv_name);
-        tv_email = findViewById(R.id.tv_email);
-        tv_id = findViewById(R.id.tv_id);
-
-        tv_name.setText(first_name + " " + last_name);
-        tv_email.setText("Email : " + email);
-        tv_id.setText("ID : " + id);
     }
 
     @Override
