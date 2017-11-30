@@ -1,9 +1,7 @@
 package kmitl.natcha58070069.com.libreria.activity;
 
 import android.arch.persistence.room.Room;
-//import android.content.Context;
 import android.content.Intent;
-//import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,13 +39,14 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*Shared Preferences;
+        /*AccessToken
         if user close app but login, Main page (Main Activity) is default page to open
         if user close app but logout, Front page is default page to open*/
         if (AccessToken.getCurrentAccessToken() == null){
             Intent intent = new Intent(this, FrontCover.class);
             startActivityForResult(intent, 999);
             finish();
+            //finish because want to block back button to this page, if log in not yet can't back to this page
         }
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
@@ -134,5 +133,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         Intent intent = new Intent(MainActivity.this, FrontCover.class);
         startActivityForResult(intent, 999);
 //        finish();
+        //don't finish because some user change to back to menu page don't want to log out can press back button
     }
 }

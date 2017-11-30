@@ -162,7 +162,9 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
             }
         }catch (StringIndexOutOfBoundsException e){}
 
-        //insert or update info to DB
+        /*insert or update info to DB
+        * if status == add, insert info to DB
+        * else if status == update, update info replace to DB*/
         if (status == "add" && stay != 1){
             new AsyncTask<Void, Void, LibreriaInfo>() {
                 @Override
@@ -220,10 +222,10 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
     public void onBackToMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivityForResult(intent, 999);
-//        setResult(RESULT_OK, intent);
         finish();
     }
 
+    //Constructor for count
     @Override
     public void onCountChanged(int i, boolean b) {
 
