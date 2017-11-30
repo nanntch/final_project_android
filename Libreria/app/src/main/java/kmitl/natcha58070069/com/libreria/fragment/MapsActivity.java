@@ -46,7 +46,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener, AdapterView.OnItemSelectedListener {
 
-    private static final String TAG = MapsActivity.class.getSimpleName();
+    //private static final String TAG = MapsActivity.class.getSimpleName();
     private GoogleMap mMap;
     private GoogleApiClient client;
     private LocationRequest locationRequest;
