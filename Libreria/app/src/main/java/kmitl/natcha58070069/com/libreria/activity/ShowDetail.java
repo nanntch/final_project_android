@@ -122,15 +122,16 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
     }
 
     public void onEditBtn(View view) {
-        Intent intent = new Intent(this, AddDetail.class);
-        intent.putExtra("LibreriaInfo", libreriaInfo);
-        startActivityForResult(intent, 999);
+        Intent intent1 = new Intent(this, AddDetail.class);
+        intent1.putExtra("LibreriaInfo", libreriaInfo);
+        startActivityForResult(intent1, 999);
         finish();
     }
 
     public void onBackBtn(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivityForResult(intent, 999);
+        Intent intent2 = new Intent(this, MainActivity.class);
+//        setResult(RESULT_OK, intent2);
+        startActivityForResult(intent2, 999);
         finish();
     }
 

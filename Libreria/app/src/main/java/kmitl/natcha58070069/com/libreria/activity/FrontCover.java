@@ -53,7 +53,8 @@ public class FrontCover extends AppCompatActivity {
 
                 //Intent to next page when Success to login FB
                 Intent intent = new Intent(FrontCover.this, MainActivity.class);
-                setResult(999, intent);
+                startActivityForResult(intent, 999);
+//                setResult(999, intent);
                 finish();
             }
 

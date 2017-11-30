@@ -110,6 +110,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     String lng = listLatLng[1].substring(0,listLatLng[1].length()-1);
                     //set new LatLng
                     LatLng latLng = new LatLng(Double.parseDouble(lat), Double.parseDouble(lng));
+                    //Add for upgrade map
+                    mo.icon(BitmapDescriptorFactory.fromResource(R.mipmap.place6));
+
                     mo.position(latLng);
                     mo.title(l.getName());
                     mo.snippet(l.getLocation());

@@ -218,8 +218,9 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
     }
 
     public void onBackToMain(View view) {
-        Intent intent = new Intent();
-        setResult(RESULT_OK, intent);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivityForResult(intent, 999);
+//        setResult(RESULT_OK, intent);
         finish();
     }
 

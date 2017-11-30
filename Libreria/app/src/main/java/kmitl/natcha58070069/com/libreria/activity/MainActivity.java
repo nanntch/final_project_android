@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         if (AccessToken.getCurrentAccessToken() == null){
             Intent intent = new Intent(this, FrontCover.class);
             startActivityForResult(intent, 999);
+            finish();
         }
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     public void onAddBtn(View view) {
         Intent intent2 = new Intent(MainActivity.this, AddDetail.class);
         startActivityForResult(intent2, 999);
+        finish();
     }
 
     public void onFindBtn(View view) {
@@ -131,5 +133,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     public void onLogoutBtn(View view) {
         Intent intent = new Intent(MainActivity.this, FrontCover.class);
         startActivityForResult(intent, 999);
+//        finish();
     }
 }
