@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">testMaps</string>
-    <string name="None">None</string>
-    <string name="Normal">Normal</string>
-    <string name="Terrain">Terrain</string>
-    <string name="Satellite">Satellite</string>
-    <string name="Hybrid">Hybrid</string>
-</resources>
