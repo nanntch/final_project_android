@@ -78,11 +78,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
 
-         /*First step after install Libreria application*/
-        if (adapter.getItemCount() == 0){
-            Toast.makeText(this, "Please Add Libreria", Toast.LENGTH_LONG).show();
-        }
-
         //for show list(Recycler)
         loadData();
     }
