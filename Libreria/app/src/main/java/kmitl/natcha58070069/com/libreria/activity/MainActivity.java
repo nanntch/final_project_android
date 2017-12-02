@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         Intent intent5 = new Intent(this, ShowDetail.class);
         intent5.putExtra("LibreriaInfo", libreriaInfo);
         startActivityForResult(intent5, 999);
+        finish();
     }
 
     //for request code == 999
