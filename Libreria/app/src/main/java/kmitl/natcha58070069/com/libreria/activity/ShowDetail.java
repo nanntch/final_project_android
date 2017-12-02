@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -40,7 +41,7 @@ import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
 
 public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback {
 
-    private ImageView shareFb, backTomain, editDetail;
+    private ImageView shareFb, editDetail;
     private TextView name, comment, locat, share, edit; //receive value
     private LinearLayout layShare, layEdit;
     //DB
@@ -76,7 +77,6 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         setSupportActionBar(toolbarWidget);
 
         //can clik
-        backTomain = findViewById(R.id.shBackToMain);
         shareFb = findViewById(R.id.shShare);
         share =findViewById(R.id.shTextShare);
         editDetail = findViewById(R.id.shEdit);
@@ -88,7 +88,6 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         name = findViewById(R.id.shTextName);
         comment = findViewById(R.id.shTextComment);
         locat = findViewById(R.id.shTextLocat);
-//        latlng = findViewById(R.id.shTextLatLng);
 
         //getIntent when click item
         libreriaInfo = getIntent().getParcelableExtra("LibreriaInfo");
@@ -110,7 +109,7 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         name.setText(libreriaInfo.getName());
         comment.setText(libreriaInfo.getComment());
         locat.setText(libreriaInfo.getLocation());
-//        latlng.setText(libreriaInfo.getLatlng());
+
         //set latlng for mark location
         String strLatLng = libreriaInfo.getLatlng().substring(9);
         String listLatLng[] = strLatLng.split(",");
@@ -127,13 +126,6 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         finish();
     }
 
-    public void onBackBtn(View view) {
-        Intent intent2 = new Intent(this, MainActivity.class);
-//        setResult(RESULT_OK, intent2);
-        startActivityForResult(intent2, 999);
-        finish();
-    }
-
     //--------------- Capture & Share -------------------//
     private boolean askForPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
@@ -144,7 +136,7 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
     }
 
     /*When click share button
-    * just show information of libreria and capture for share*/
+    * just show information of libreria and capture for share (without button)*/
     public void onShareBtn(View view) {
         if (askForPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, REQUEST_CODE_EXTERNAL_STORAGE)) {
             shareFb.setVisibility(View.GONE);
@@ -153,7 +145,6 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
             edit.setVisibility(View.GONE);
             layShare.setVisibility(View.GONE);
             layEdit.setVisibility(View.GONE);
-            backTomain.setVisibility(View.GONE);
             //Screen shot
             Bitmap bm = ScreenCapture.takeScreenShotOfRootView(view.getRootView());
             Uri uri = getImageUri(this, bm);
@@ -174,7 +165,6 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         edit.setVisibility(View.VISIBLE);
         layShare.setVisibility(View.VISIBLE);
         layEdit.setVisibility(View.VISIBLE);
-        backTomain.setVisibility(View.VISIBLE);
     }
 
     //create file for save picture (Screenshot)
@@ -258,5 +248,27 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         LatLng ll = new LatLng(lat, lng);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
         mGoogleMap.moveCamera(update);
+    }
+
+    /*Fix Back button
+    * Link to Main Page if click back button*/
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivityForResult(intent, 999);
+        finish();
+    }
+
+    public void onDeleteBtn(View view) {
+        new AsyncTask<Void, Void, LibreriaInfo>() {
+            @Override
+            protected LibreriaInfo doInBackground(Void... voids) {
+                libreriaDB.getLibreriaDAO().delete(libreriaInfo);
+                return null;
+            }
+        }.execute();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivityForResult(intent, 999);
+        finish();
     }
 }

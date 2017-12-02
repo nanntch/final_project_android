@@ -1,5 +1,6 @@
 package kmitl.natcha58070069.com.libreria.activity;
 
+import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,7 +42,7 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
 
     private EditText editName, editComment;
     private TextView adTextSave, adTextDelete, tvLocation, tvLatLng;
-    private ImageView adSave, adDelete, adBack;
+    private ImageView adSave, adDelete;
     private LinearLayout adLaySave, adLayDelete;
     private int PLACE_PICKER_REQUEST = 1;
     private Toolbar toolbarWidget;
@@ -49,6 +51,7 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_detail);
+
         //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO")
                 .fallbackToDestructiveMigration()
@@ -58,16 +61,15 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
         toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
 
-        //TextView && ImageView && LinearLayput can click
+        //TextView && ImageView && LinearLayout --> can click
         adTextSave = findViewById(R.id.adTexSave);
         adTextDelete = findViewById(R.id.adTextDelete);
         adSave = findViewById(R.id.adSave);
         adDelete = findViewById(R.id.adDelete);
-        adBack = findViewById(R.id.adBack);
         adLaySave = findViewById(R.id.laySave);
         adLayDelete = findViewById(R.id.layDelete);
 
-        //Edit Text
+        //Edit Text receive info
         editName = findViewById(R.id.editName);
         editComment = findViewById(R.id.editComment);
 
@@ -88,7 +90,6 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
             editComment.setText(libreriaInfo.getComment());
             tvLocation.setText(libreriaInfo.getLocation());
             tvLatLng.setText(libreriaInfo.getLatlng());
-            adBack.setVisibility(View.GONE);
         }
 
         //Word counter -> Comment
@@ -219,15 +220,24 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
         }
     }
 
-    public void onBackToMain(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivityForResult(intent, 999);
-        finish();
-    }
-
     //Constructor for count
     @Override
     public void onCountChanged(int i, boolean b) {
 
+    }
+
+    public void hideKeyboard(View view) {
+        //hide keyboard when click space
+        InputMethodManager imm = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    /*Fix Back button of android
+    * Link to Main Page if Click back button*/
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivityForResult(intent, 999);
+        finish();
     }
 }

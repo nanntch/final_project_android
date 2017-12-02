@@ -11,11 +11,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 
 import java.util.List;
 
+import kmitl.natcha58070069.com.libreria.BackCover;
 import kmitl.natcha58070069.com.libreria.R;
 import kmitl.natcha58070069.com.libreria.adapter.MyAdapter;
 import kmitl.natcha58070069.com.libreria.database.LibreriaDB;
@@ -46,8 +48,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
             Intent intent = new Intent(this, FrontCover.class);
             startActivityForResult(intent, 999);
             finish();
-            //finish because want to block back button to this page, if log in not yet can't back to this page
+            //finish because want to block back button to this page, if login not yet can't back to this page
         }
+
         //toolbar
         toolbarWidget = findViewById(R.id.toolbar);
         setSupportActionBar(toolbarWidget);
@@ -74,6 +77,11 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         list = findViewById(R.id.lib_list);
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
+
+         /*First step after install Libreria application*/
+        if (adapter.getItemCount() == 0){
+            Toast.makeText(this, "Please Add Libreria", Toast.LENGTH_LONG).show();
+        }
 
         //for show list(Recycler)
         loadData();
@@ -131,9 +139,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     }
 
     public void onLogoutBtn(View view) {
-        Intent intent = new Intent(MainActivity.this, FrontCover.class);
+        Intent intent = new Intent(MainActivity.this, BackCover.class);
         startActivityForResult(intent, 999);
-//        finish();
-        //don't finish because some user change to back to menu page don't want to log out can press back button
+        finish();
     }
 }

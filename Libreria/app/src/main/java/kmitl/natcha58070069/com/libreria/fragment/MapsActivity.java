@@ -4,8 +4,6 @@ import android.Manifest;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-//import android.location.Address;
-//import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -46,7 +44,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener, AdapterView.OnItemSelectedListener {
 
-    //private static final String TAG = MapsActivity.class.getSimpleName();
     private GoogleMap mMap;
     private GoogleApiClient client;
     private LocationRequest locationRequest;
@@ -194,7 +191,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         if (client != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
-//            removeLocationUpdate();
         }
     }
 
@@ -254,11 +250,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-    public void onBackToMainFromMap(View view) {
-        Intent intent = new Intent();
-        setResult(RESULT_OK, intent);
-        finish();
-    }
-
 }

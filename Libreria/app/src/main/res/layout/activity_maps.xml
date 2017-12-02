@@ -15,12 +15,12 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="#ffffffff">
 
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:onClick="onBackToMainFromMap"
-            android:src="@drawable/map_back" />
+        <!--<ImageView-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:padding="5dp"-->
+            <!--android:onClick="onBackToMainFromMap"-->
+            <!--android:src="@drawable/map_back" />-->
 
         <TextView
             android:layout_width="wrap_content"
