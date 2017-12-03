@@ -13,6 +13,8 @@ import android.widget.TextView;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +23,7 @@ import org.junit.runners.Suite;
 import kmitl.natcha58070069.com.libreria.R;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
@@ -44,14 +47,32 @@ public class MainActivityTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    @Test
-    public void AddNameAndCommentWithLogin() {
-        //When first open app with out login
+    @Before
+    public void loginToApp(){
         onView(allOf(withId(R.id.login_button))).perform(click());
+    }
+
+    @Test
+    public void addNameAndCommentSuccess() {
+        //When first open app with out login
+//        onView(allOf(withId(R.id.login_button))).perform(click());
         onView(allOf(withId(R.id.maAdd))).perform(click());
         onView(withId(R.id.editName)).perform(replaceText("Libreria"), closeSoftKeyboard());
         onView(withId(R.id.editComment)).perform(replaceText("It's good place."), closeSoftKeyboard());
         onView(allOf(withId(R.id.adSave))).perform(click());
+        pressBack();
+//        onView(allOf(withId(R.id.maLogout))).perform(click());
+//        onView(allOf(withId(R.id.login_button))).perform(click());
+    }
+
+//    @Test
+//    public void
+
+    @After
+    public void LogoutApp(){
+        onView(allOf(withId(R.id.maLogout))).perform(click());
+        onView(allOf(withId(R.id.login_button))).perform(click());
+        onView(allOf(withId(android.R.id.button1))).perform(click());
     }
 
 //    @Test

@@ -19,19 +19,9 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="#4c3223">
 
-        <!--<ImageView-->
-            <!--android:id="@+id/shBackToMain"-->
-            <!--android:layout_width="40dp"-->
-            <!--android:layout_height="40dp"-->
-            <!--android:layout_gravity="left"-->
-            <!--android:onClick="onBackBtn"-->
-            <!--android:padding="5dp"-->
-            <!--app:srcCompat="@drawable/sh_back4" />-->
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="60dp"
             android:gravity="center"
             android:text="LIBRERIA"
             android:textSize="20sp" />
@@ -116,25 +106,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:gravity="center"
         android:orientation="horizontal"
         android:weightSum="3">
 
         <LinearLayout
             android:id="@+id/layShare"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/cardview_shadow_start_color"
-            android:gravity="center_horizontal"
-            android:onClick="onBackBtn">
+            android:gravity="center"
+            android:onClick="onShareBtn">
 
             <ImageView
                 android:id="@+id/shShare"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="right"
+                android:gravity="center"
                 android:onClick="onShareBtn"
                 android:padding="5dp"
                 app:srcCompat="@drawable/sh_share3" />
@@ -143,7 +134,7 @@
                 android:id="@+id/shTextShare"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:onClick="onShareBtn"
                 android:text="SHARE"
                 android:textSize="16dp" />
@@ -151,12 +142,12 @@
 
         <LinearLayout
             android:id="@+id/layEdit"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/cardview_shadow_start_color"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:onClick="onEditBtn"
             android:orientation="horizontal">
 
@@ -164,7 +155,7 @@
                 android:id="@+id/shEdit"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="right"
+                android:gravity="center"
                 android:onClick="onEditBtn"
                 android:padding="5dp"
                 app:srcCompat="@drawable/edit1" />
@@ -173,7 +164,7 @@
                 android:id="@+id/shTextEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:onClick="onEditBtn"
                 android:text="EDIT"
                 android:textSize="16dp" />
@@ -181,12 +172,12 @@
 
         <LinearLayout
             android:id="@+id/layDelete"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="1dp"
             android:layout_weight="1"
             android:background="@color/cardview_shadow_start_color"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:onClick="onDeleteBtn"
             android:orientation="horizontal">
 
@@ -194,7 +185,7 @@
                 android:id="@+id/adDelete"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_gravity="right"
+                android:gravity="center"
                 android:onClick="onDeleteBtn"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ad_delete" />
@@ -203,7 +194,7 @@
                 android:id="@+id/adTextDelete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginLeft="3dp"
                 android:onClick="onDeleteBtn"
                 android:text="DELETE"

@@ -1,7 +1,9 @@
 package kmitl.natcha58070069.com.libreria.activity;
 
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,13 +13,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 
 import java.util.List;
 
-import kmitl.natcha58070069.com.libreria.BackCover;
 import kmitl.natcha58070069.com.libreria.R;
 import kmitl.natcha58070069.com.libreria.adapter.MyAdapter;
 import kmitl.natcha58070069.com.libreria.database.LibreriaDB;
@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
 
         //for show list(Recycler)
         loadData();
+
+        String type = "visible";
+        SharedPreferences sp = getSharedPreferences("DELETE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("DeleteButton", type);
+        editor.commit();
     }
 
     /*Load data ->
@@ -106,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     //When click item (for edit or update)
     @Override
     public void onClickInfoItem(LibreriaInfo libreriaInfo) {
+
         Intent intent5 = new Intent(this, ShowDetail.class);
         intent5.putExtra("LibreriaInfo", libreriaInfo);
         startActivityForResult(intent5, 999);

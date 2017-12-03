@@ -2,7 +2,9 @@ package kmitl.natcha58070069.com.libreria.activity;
 
 import android.app.Activity;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +53,13 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_detail);
+
+        //if save dont delete suddenly
+        String type = "gone";
+        SharedPreferences sp = getSharedPreferences("DELETE", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("DeleteButton", type);
+        editor.commit();
 
         //Database
         libreriaDB = Room.databaseBuilder(this, LibreriaDB.class, "LIB_INFO")

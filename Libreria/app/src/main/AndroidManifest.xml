@@ -97,7 +97,8 @@
         <activity
             android:name=".activity.ShowDetail"
             android:screenOrientation="portrait" />
-        <activity android:name=".BackCover"></activity>
+        <activity android:name=".activity.BackCover"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

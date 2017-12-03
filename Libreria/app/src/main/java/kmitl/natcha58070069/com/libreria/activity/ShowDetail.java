@@ -2,7 +2,9 @@ package kmitl.natcha58070069.com.libreria.activity;
 
 import android.app.Dialog;
 import android.arch.persistence.room.Room;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -41,9 +43,9 @@ import kmitl.natcha58070069.com.libreria.model.LibreriaInfo;
 
 public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback {
 
-    private ImageView shareFb, editDetail;
-    private TextView name, comment, locat, share, edit; //receive value
-    private LinearLayout layShare, layEdit;
+    private ImageView shareFb, editDetail, deleteDetail;
+    private TextView name, comment, locat, share, edit, delete; //receive value
+    private LinearLayout layShare, layEdit, layDelete;
     //DB
     private LibreriaDB libreriaDB;
     private LibreriaInfo libreriaInfo;
@@ -52,7 +54,7 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
     private Toolbar toolbarWidget;
 
     //lat, lng String for receive substring
-    private String lat, lng;
+    private String lat, lng, type;
     private double latitude, longitude;
 
     //for share facebook
@@ -61,6 +63,8 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
     //Map
     private GoogleMap mGoogleMap;
     public static final int REQUEST_LOCATION_CODE = 99;
+
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,9 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         edit = findViewById(R.id.shTextEdit);
         layShare = findViewById(R.id.layShare);
         layEdit = findViewById(R.id.layEdit);
+        delete = findViewById(R.id.adTextDelete);
+        deleteDetail = findViewById(R.id.adDelete);
+        layDelete = findViewById(R.id.layDelete);
 
         //wait for receive value
         name = findViewById(R.id.shTextName);
@@ -91,6 +98,20 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
 
         //getIntent when click item
         libreriaInfo = getIntent().getParcelableExtra("LibreriaInfo");
+
+        //SharedPreferences
+        sp = getSharedPreferences("DELETE", Context.MODE_PRIVATE);
+        type = sp.getString("DeleteButton", "");
+
+        if (type.equals("gone")){
+            delete.setVisibility(View.GONE);
+            deleteDetail.setVisibility(View.GONE);
+            layDelete.setVisibility(View.GONE);
+        }else {
+            delete.setVisibility(View.VISIBLE);
+            deleteDetail.setVisibility(View.VISIBLE);
+            layDelete.setVisibility(View.VISIBLE);
+        }
 
         //get data from model
         getData();
@@ -145,6 +166,9 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
             edit.setVisibility(View.GONE);
             layShare.setVisibility(View.GONE);
             layEdit.setVisibility(View.GONE);
+            delete.setVisibility(View.GONE);
+            deleteDetail.setVisibility(View.GONE);
+            layDelete.setVisibility(View.GONE);
             //Screen shot
             Bitmap bm = ScreenCapture.takeScreenShotOfRootView(view.getRootView());
             Uri uri = getImageUri(this, bm);
@@ -165,6 +189,16 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         edit.setVisibility(View.VISIBLE);
         layShare.setVisibility(View.VISIBLE);
         layEdit.setVisibility(View.VISIBLE);
+
+        if (type.equals("gone")){
+            delete.setVisibility(View.GONE);
+            deleteDetail.setVisibility(View.GONE);
+            layDelete.setVisibility(View.GONE);
+        }else {
+            delete.setVisibility(View.VISIBLE);
+            deleteDetail.setVisibility(View.VISIBLE);
+            layDelete.setVisibility(View.VISIBLE);
+        }
     }
 
     //create file for save picture (Screenshot)
@@ -260,6 +294,7 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
     }
 
     public void onDeleteBtn(View view) {
+
         new AsyncTask<Void, Void, LibreriaInfo>() {
             @Override
             protected LibreriaInfo doInBackground(Void... voids) {

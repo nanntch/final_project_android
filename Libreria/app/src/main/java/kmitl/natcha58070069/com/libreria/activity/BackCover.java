@@ -1,4 +1,4 @@
-package kmitl.natcha58070069.com.libreria;
+package kmitl.natcha58070069.com.libreria.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
-import kmitl.natcha58070069.com.libreria.activity.MainActivity;
+import kmitl.natcha58070069.com.libreria.R;
 
 public class BackCover extends AppCompatActivity {
 
@@ -63,6 +63,7 @@ public class BackCover extends AppCompatActivity {
         }
         finish();
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
