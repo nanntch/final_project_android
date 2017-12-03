@@ -55,7 +55,7 @@ public class MainActivityTest {
         onView(allOf(withId(R.id.adSave))).perform(click());
         pressBack();
     }
-    
+
 
     @After
     public void LogoutApp() {
