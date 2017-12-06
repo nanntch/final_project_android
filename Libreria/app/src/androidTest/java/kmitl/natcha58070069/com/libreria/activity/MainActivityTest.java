@@ -18,6 +18,7 @@ import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.Matchers.allOf;
 
@@ -49,11 +50,12 @@ public class MainActivityTest {
         onView(withId(R.id.editComment)).perform(replaceText(""), closeSoftKeyboard());
         onView(allOf(withId(R.id.adSave))).perform(click());
 
-        //fully
+        //fully & Delete
         onView(withId(R.id.editName)).perform(replaceText("Libreria"), closeSoftKeyboard());
         onView(withId(R.id.editComment)).perform(replaceText("It's good place."), closeSoftKeyboard());
         onView(allOf(withId(R.id.adSave))).perform(click());
-        pressBack();
+        onView(allOf(withId(R.id.adDelete))).perform(click());
+//        pressBack();
     }
 
 
@@ -63,18 +65,5 @@ public class MainActivityTest {
         onView(allOf(withId(R.id.login_button))).perform(click());
         onView(allOf(withId(android.R.id.button1))).perform(click());
     }
-
-
-
-
-//    @Test
-//    public void DeleteLibreria() {
-//        onView(allOf(withId(R.id.login_button))).perform(click());
-//
-//        onView(allOf(withId(R.id.maAdd))).perform(click());
-//        onView(withId(R.id.editName)).perform(replaceText("Libreria"), closeSoftKeyboard());
-//        onView(withId(R.id.editComment)).perform(replaceText("It's good place."), closeSoftKeyboard());
-//        onView(allOf(withId(R.id.adDelete))).perform(click());
-//    }
 
 }
