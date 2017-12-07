@@ -189,9 +189,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomBy(10));
 
-        if (client != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
-        }
+//        if (client != null) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
+//        }
     }
 
     @Override
@@ -202,9 +202,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationRequest.setFastestInterval(1000); //ms
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(client, locationRequest, this);
-        }
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+//            LocationServices.FusedLocationApi.requestLocationUpdates(client, locationRequest, this);
+//        }
     }
 
     public boolean checkLocationPermission() {
