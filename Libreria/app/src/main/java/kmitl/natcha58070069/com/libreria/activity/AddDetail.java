@@ -160,7 +160,7 @@ public class AddDetail extends AppCompatActivity implements CharCountTextView.Ch
                 Toast.makeText(this, "Name up to 50 characters, Please try again", Toast.LENGTH_LONG).show();
                 stay = 1;
             } else if (location.equals("Place of Libreria") || latlng.equals("Latitude/Longitude")){
-                Toast.makeText(this, "Please add location of Libreria", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Please add location of Independent Bookstores", Toast.LENGTH_LONG).show();
                 stay = 1;
             }
             else {

@@ -182,7 +182,7 @@ public class ShowDetail extends AppCompatActivity implements OnMapReadyCallback 
         shareIntent.setType("image/jpg");
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         startActivity(Intent.createChooser(shareIntent, "Share Libreria via"));
-
+        //button
         shareFb.setVisibility(View.VISIBLE);
         editDetail.setVisibility(View.VISIBLE);
         share.setVisibility(View.VISIBLE);

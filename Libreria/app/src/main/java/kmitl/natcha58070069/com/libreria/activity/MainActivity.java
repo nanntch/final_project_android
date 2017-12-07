@@ -36,12 +36,10 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     private LibreriaDB libreriaDB;
     private MyAdapter adapter;
     private RecyclerView list;
-
+    private Toolbar toolbarWidget;
     //Can Click
     private ImageView maAdd, maFind, maLogout;
     private TextView add, find, logout;
-
-    private Toolbar toolbarWidget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,23 +91,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("DeleteButton", type);
         editor.commit();
-
-        //test
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "kmitl.natcha58070069.com.libreria",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-
-        } catch (NoSuchAlgorithmException e) {
-
-        }
-
     }
 
     /*Load data ->
@@ -136,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.MyAdapt
     //When click item (for edit or update)
     @Override
     public void onClickInfoItem(LibreriaInfo libreriaInfo) {
-
         Intent intent5 = new Intent(this, ShowDetail.class);
         intent5.putExtra("LibreriaInfo", libreriaInfo);
         startActivityForResult(intent5, 999);
